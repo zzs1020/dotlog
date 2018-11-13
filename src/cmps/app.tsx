@@ -5,7 +5,7 @@ import SearchStories from './seachStories';
 
 const App = () =>
 	<div className="app">
-		<div className="interactions">
+		<div className="interactions tst">
 			<SearchStories />
 		</div>
 		<Stories />
