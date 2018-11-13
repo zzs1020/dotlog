@@ -1,6 +1,8 @@
+import './index.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
 import App from './cmps/app';
 import * as serviceWorker from './serviceWorker';
 import store from './store';

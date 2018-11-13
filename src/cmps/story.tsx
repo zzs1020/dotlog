@@ -1,5 +1,7 @@
 import React from 'react';
 import './story.scss';
+import { connect } from 'react-redux';
+import { doArchiveStory } from '../actions/archive';
 
 const Story = ({story, columns, onArchive}) => {
 	const {title, url, author, num_comments, points, objectID} = story;
@@ -27,4 +29,11 @@ const Story = ({story, columns, onArchive}) => {
 	)
 }
 
-export default Story;
+const mapDispatchToProps = dispatch => ({
+	onArchive: id => dispatch(doArchiveStory(id))
+});
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(Story);

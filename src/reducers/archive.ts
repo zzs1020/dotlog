@@ -1,6 +1,8 @@
 import { STORY_ARCHIVE } from '../constants/actionTypes';
 
-const archiveReducer = (state = [], action) => {
+const INITIAL_STATE = [];
+
+const archiveReducer = (state: string[] = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case STORY_ARCHIVE:
 			return applyArchiveStory(state, action);
