@@ -1,4 +1,4 @@
-import { STORIES_ADD, STORIES_FETCH, STORIES_FETCH_ERROR } from '../constants/actionTypes';
+import { STORIES_ADD, STORIES_FETCH, STORIES_FETCH_ERROR } from '../constants/action-types';
 
 const doAddStories = stories => ({
     type: STORIES_ADD,

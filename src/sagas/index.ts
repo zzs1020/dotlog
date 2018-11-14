@@ -1,5 +1,5 @@
 import { takeEvery, all } from 'redux-saga/effects';
-import { STORIES_FETCH } from '../constants/actionTypes';
+import { STORIES_FETCH } from '../constants/action-types';
 import { handleFetchStories } from './story';
 
 function* watchAll() {

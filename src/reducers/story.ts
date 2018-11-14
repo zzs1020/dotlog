@@ -1,4 +1,4 @@
-import { STORIES_ADD, STORIES_FETCH_ERROR } from '../constants/actionTypes';
+import { STORIES_ADD, STORIES_FETCH_ERROR } from '../constants/action-types';
 const INITIAL_STATE = {
 	stories: [],
 	err: null
