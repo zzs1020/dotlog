@@ -1,7 +1,7 @@
 import React from 'react';
 import './app.scss';
 import Stories from './stories';
-import SearchStories from './seachStories';
+import SearchStories from './searchStories';
 
 const App = () =>
 	<div className="app">

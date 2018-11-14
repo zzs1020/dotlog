@@ -2,13 +2,16 @@ import React from 'react';
 import { doFetchStories } from '../actions/story';
 import { connect } from 'react-redux';
 
-class SearchStories extends React.Component {
+class SearchStories extends React.Component<{onFetchStories}, {query}> {
     constructor(props) {
         super(props);
 
         this.state = {
             query: ''
-        }
+        };
+
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onSubmit(event) {

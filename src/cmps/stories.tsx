@@ -2,7 +2,7 @@ import React from 'react';
 import './stories.scss';
 import Story from './story';
 import { connect } from 'react-redux';
-import { getReadableStories } from '../selectors/story';
+import { getFetchError, getReadableStories } from '../selectors/story';
 
 const COLUMNS = {
 	title: {
@@ -26,7 +26,7 @@ const COLUMNS = {
 	},
 };
 
-const Stories = ({stories}) =>
+const Stories = ({stories, err}) =>
 	<div className="stories">
 		<div className="stories-header">
 			{Object.keys(COLUMNS).map(key =>
@@ -38,6 +38,7 @@ const Stories = ({stories}) =>
                 </span>
 			)}
 		</div>
+		{ err && <p className="error">Api call failed</p> }
 		{(stories || []).map((story: any) =>
 			<Story key={story.objectID} story={story} columns={COLUMNS} />
 		)}
@@ -45,7 +46,8 @@ const Stories = ({stories}) =>
 
 
 const mapStateToProps = state => ({
-	stories: getReadableStories(state)
+	stories: getReadableStories(state),
+	err: getFetchError(state)
 });
 
 export default connect(
