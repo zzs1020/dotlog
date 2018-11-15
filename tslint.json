@@ -9,7 +9,15 @@
         "indent": [true, "tabs", 4],
         "object-literal-sort-keys": false,
         "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
-        "interface-name": [true, "never-prefix"]
+        "interface-name": [true, "never-prefix"],
+        "no-console": false,
+        "ordered-imports": [
+            true,
+            {
+              "import-sources-order": "any",
+              "named-imports-order": "any"
+            }
+          ]
     },
     "rulesDirectory": [],
     "linterOptions": {
