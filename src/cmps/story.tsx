@@ -2,8 +2,9 @@ import React from 'react';
 import './story.scss';
 import { connect } from 'react-redux';
 import { doArchiveStory } from '../actions/archive';
+import { Hit } from '../models/search-result';
 
-const Story = ({story, columns, onArchive}) => {
+const Story = ({story, columns, onArchive}: {story: Hit, columns: any, onArchive: (id) => void}) => {
 	const {title, url, author, num_comments, points, objectID} = story;
 
 	return (
@@ -27,7 +28,7 @@ const Story = ({story, columns, onArchive}) => {
 			</span>
 		</div>
 	)
-}
+};
 
 const mapDispatchToProps = dispatch => ({
 	onArchive: id => dispatch(doArchiveStory(id))

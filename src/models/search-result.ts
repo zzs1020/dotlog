@@ -1,3 +1,56 @@
+export interface Title {
+	value: string;
+	matchLevel: string;
+	fullyHighlighted: boolean;
+	matchedWords: string[];
+}
+
+export interface Url {
+	value: string;
+	matchLevel: string;
+	fullyHighlighted: boolean;
+	matchedWords: string[];
+}
+
+export interface Author {
+	value: string;
+	matchLevel: string;
+	matchedWords: any[];
+}
+
+export interface StoryText {
+	value: string;
+	matchLevel: string;
+	matchedWords: string[];
+	fullyHighlighted?: boolean;
+}
+
+export interface HighlightResult {
+	title: Title;
+	url: Url;
+	author: Author;
+	story_text: StoryText;
+}
+
+export interface Hit {
+	created_at: Date;
+	title: string;
+	url: string;
+	author: string;
+	points: number;
+	story_text: string;
+	comment_text?: any;
+	num_comments: number;
+	story_id?: any;
+	story_title?: any;
+	story_url?: any;
+	parent_id?: any;
+	created_at_i: number;
+	_tags: string[];
+	objectID: string;
+	_highlightResult: HighlightResult;
+}
+
 export interface SearchResult {
 	hits: Hit[];
 	nbHits: number;
@@ -8,37 +61,4 @@ export interface SearchResult {
 	exhaustiveNbHits: boolean;
 	query: string;
 	params: string;
-}
-
-export interface Hit {
-	createdAt: string;
-	title: string;
-	url: string;
-	author: string;
-	points: number;
-	storyText: string;
-	commentText: string;
-	numComments: number;
-	storyID: string;
-	storyTitle: string;
-	storyURL: string;
-	parentID?: string;
-	createdAtI: number;
-	tags: string[];
-	objectID: string;
-	highlightResult: HighlightResult;
-}
-
-export interface HighlightResult {
-	title: Author;
-	url?: Author;
-	author: Author;
-	storyText?: Author;
-}
-
-export interface Author {
-	value: string;
-	matchLevel: string;
-	matchedWords: string[];
-	fullyHighlighted?: boolean;
 }

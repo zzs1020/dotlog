@@ -12,4 +12,6 @@ function* handleFetchStories(action) {
 	}
 }
 
-export {handleFetchStories};
+export {
+	handleFetchStories
+};
