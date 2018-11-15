@@ -1,0 +1,20 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "quotemark": [true, "single", "jsx-double"],
+        "indent": [true, "tabs", 4],
+        "object-literal-sort-keys": false,
+        "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+        "interface-name": [true, "never-prefix"]
+    },
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "node_modules"
+        ]
+    }
+}

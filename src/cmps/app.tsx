@@ -1,11 +1,11 @@
 import React from 'react';
 import './app.scss';
 import Stories from './stories';
-import SearchStories from './searchStories';
+import SearchStories from './search-stories';
 
 const App = () =>
 	<div className="app">
-		<div className="interactions tst">
+		<div className="interactions">
 			<SearchStories />
 		</div>
 		<Stories />

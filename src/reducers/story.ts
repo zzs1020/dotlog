@@ -4,12 +4,12 @@ const INITIAL_STATE = {
 	err: null
 };
 
-const applyAddStories = action => ({
+const applyAddStories = (action) => ({
 	stories: action.stories,
 	err: null
 });
 
-const applyFetchErrorStories = action => ({
+const applyFetchErrorStories = (action) => ({
 	stories: [],
 	err: action.err
 });

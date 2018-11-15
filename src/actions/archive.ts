@@ -5,4 +5,6 @@ const doArchiveStory = (id: string) => ({
 	id
 });
 
-export {doArchiveStory};
+export {
+	doArchiveStory
+};

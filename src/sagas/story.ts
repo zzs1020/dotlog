@@ -3,13 +3,13 @@ import { doAddStories, doFetchErrorStories } from '../actions/story';
 import { fetchStories } from '../api/story';
 
 function* handleFetchStories(action) {
-    const {query} = action;
-    try {
-        const result = yield call(fetchStories, query);
-        yield put(doAddStories(result.hits));
-    } catch (err) {
-        yield put(doFetchErrorStories(err));
-    }
+	const {query} = action;
+	try {
+		const result = yield call(fetchStories, query);
+		yield put(doAddStories(result.hits));
+	} catch (err) {
+		yield put(doFetchErrorStories(err));
+	}
 }
 
 export {handleFetchStories};
