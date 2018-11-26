@@ -4,28 +4,26 @@ import { connect } from 'react-redux';
 import { doArchiveStory } from '../actions/archive';
 import { Hit } from '../models/search-result';
 
-const Story = ({story, columns, onArchive}: {story: Hit, columns: any, onArchive: (id) => void}) => {
+const Story = ({story, cols, onArchive}: {story: Hit, cols: any, onArchive: (id) => void}) => {
 	const {title, url, author, num_comments, points, objectID} = story;
 
 	return (
-		<div className="story">
-            <span style={{width: columns.title.width}}>
+		<div className="row my-1">
+            <div className={cols.title}>
                 <a href={url}>{title}</a>
-            </span>
-			<span style={{width: columns.author.width}}>
+            </div>
+			<div className={cols.author}>
                 {author}
-            </span>
-			<span style={{width: columns.comments.width}}>
+            </div>
+			<div className={cols.comments}>
                 {num_comments}
-            </span>
-			<span style={{width: columns.points.width}}>
+            </div>
+			<div className={cols.points}>
                 {points}
-            </span>
-			<span style={{width: columns.archive.width}}>
-            </span>
-			<span style={{width: columns.archive.width}}>
-				<button type="button" className="button-inline" onClick={() => onArchive(objectID)}> Archive </button>
-			</span>
+            </div>
+			<div className={cols.archive}>
+				<button type="button" className="btn btn-outline-danger" onClick={() => onArchive(objectID)}> Archive </button>
+			</div>
 		</div>
 	)
 };

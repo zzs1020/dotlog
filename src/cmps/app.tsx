@@ -4,8 +4,8 @@ import Stories from './stories';
 import SearchStories from './search-stories';
 
 const App = () =>
-	<div className="app">
-		<div className="interactions">
+	<div className="container-fluid">
+		<div className="m-2">
 			<SearchStories />
 		</div>
 		<Stories />

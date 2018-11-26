@@ -19,7 +19,6 @@ class SearchStories extends React.Component<{onFetchStories}, {query}> {
         
         if (query) {
             this.props.onFetchStories(query);
-            this.setState({query: ''});
         }
 
         event.preventDefault();
@@ -32,9 +31,9 @@ class SearchStories extends React.Component<{onFetchStories}, {query}> {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
-                <input type="text" value={this.state.query} onChange={this.onChange} />
-                <button type="submit">Search</button>
+            <form onSubmit={this.onSubmit} className="form-inline">
+                <input type="text" className="form-control" value={this.state.query} onChange={this.onChange} />
+                <button className="btn btn-primary" type="submit">Search</button>
             </form>
         );
     }

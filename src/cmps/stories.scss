@@ -1,17 +1,5 @@
-.stories {
-    margin: 20px 0;
-}
-
-.stories-header {
-    display: flex;
-    line-height: 24px;
-    font-size: 16px;
-    padding: 0 10px;
-    justify-content: space-between;
-}
-
-.stories-header>span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 0 5px;
+.titles {
+    text-transform: capitalize;
+    border-bottom: 1px grey solid;
+    padding: 0.5rem;
 }

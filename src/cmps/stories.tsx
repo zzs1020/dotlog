@@ -8,42 +8,25 @@ import { AxiosError } from 'axios';
 import { StoreState } from '../models/store-state';
 
 const COLUMNS = {
-	title: {
-		label: 'Title',
-		width: '40%',
-	},
-	author: {
-		label: 'Author',
-		width: '30%',
-	},
-	comments: {
-		label: 'Comments',
-		width: '10%',
-	},
-	points: {
-		label: 'Points',
-		width: '10%',
-	},
-	archive: {
-		width: '10%',
-	},
+	title: 'col-5',
+	author: 'col-3',
+	comments: 'col-1',
+	points: 'col-1',
+	archive: 'col-2'
 };
 
-const Stories = ({stories, err}: {stories: Hit[], err: AxiosError}) =>
-	<div className="stories">
-		<div className="stories-header">
+const Stories = ({stories, err}: { stories: Hit[], err: AxiosError }) =>
+	<div>
+		<div className="row titles">
 			{Object.keys(COLUMNS).map(key =>
-				<span
-					key={key}
-					style={{width: COLUMNS[key].width}}
-				>
-                    {COLUMNS[key].label}
-                </span>
+				<div key={key} className={COLUMNS[key]}>
+					{key}
+				</div>
 			)}
 		</div>
-		{ err && <p className="error">Api call failed</p> }
+		{err && <p className="error">Api call failed</p>}
 		{(stories || []).map((story: Hit) =>
-			<Story key={story.objectID} story={story} columns={COLUMNS} />
+			<Story key={story.objectID} story={story} cols={COLUMNS} />
 		)}
 	</div>;
 
