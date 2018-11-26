@@ -1,14 +1,20 @@
 import React from 'react';
 import './app.scss';
-import Stories from './stories';
-import SearchStories from './search-stories';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './home';
+import Header from './header';
 
-const App = () =>
+const App = () => (
 	<div className="container-fluid">
-		<div className="m-2">
-			<SearchStories />
-		</div>
-		<Stories />
-	</div>;
+		<BrowserRouter>
+			<>
+				<Header />
+				<Switch>
+					<Route path="/" exact component={Home} />
+				</Switch>
+			</>
+		</BrowserRouter>
+	</div>
+);
 
 export default App;
