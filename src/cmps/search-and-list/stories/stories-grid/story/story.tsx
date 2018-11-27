@@ -1,8 +1,9 @@
 import React from 'react';
 import './story.scss';
 import { connect } from 'react-redux';
-import { doArchiveStory } from '../actions/archive';
-import { Hit } from '../models/search-result';
+import Button from '../../../../shared/button/button';
+import { Hit } from '../../../../../models/search-result';
+import { doArchiveStory } from '../../../../../actions/archive';
 
 const Story = ({ story, cols, onArchive }: { story: Hit, cols: any, onArchive: (id) => void }) => {
 	const { title, url, author, num_comments, points, objectID } = story;
@@ -22,7 +23,7 @@ const Story = ({ story, cols, onArchive }: { story: Hit, cols: any, onArchive: (
 				{points}
 			</div>
 			<div className={cols.archive}>
-				<button type="button" className="btn btn-outline-danger" onClick={() => onArchive(objectID)}> Archive </button>
+				<Button cls="outline-danger" onClick={() => onArchive(objectID)}>Archive</Button>
 			</div>
 		</div>
 	);

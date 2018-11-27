@@ -1,8 +1,8 @@
 import React from 'react';
 import './app.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from './home';
-import Header from './header';
+import SearchAndList from './search-and-list/search-and-list';
+import Header from './header/header';
 
 const App = () => (
 	<div className="container-fluid">
@@ -10,7 +10,7 @@ const App = () => (
 			<>
 				<Header />
 				<Switch>
-					<Route path="/" exact component={Home} />
+					<Route path="/" exact component={SearchAndList} />
 				</Switch>
 			</>
 		</BrowserRouter>

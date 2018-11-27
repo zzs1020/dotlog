@@ -1,9 +1,9 @@
 import React from 'react';
-import './stories.scss';
 import { connect } from 'react-redux';
-import { getFetchError, getReadableStories, getArchivedStories, getStories } from '../selectors/story';
-import { StoreState } from '../models/store-state';
-import StoriesGrid from './stories-grid';
+import { getFetchError, getReadableStories, getArchivedStories } from '../../../selectors/story';
+import { StoreState } from '../../../models/store-state';
+import StoriesGrid from './stories-grid/stories-grid';
+import Button from '../../shared/button/button';
 
 class Stories extends React.Component<{ store, err }, {showingStories}> {
 	constructor(props) {
@@ -17,9 +17,9 @@ class Stories extends React.Component<{ store, err }, {showingStories}> {
 		this.showReadable = this.showReadable.bind(this);
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps) {
-			this.showReadable(nextProps.store);
+	componentDidUpdate(prevProps) {
+		if (this.props.store !== prevProps.store) {
+			this.showReadable();
 		}
 	}
 
@@ -29,17 +29,17 @@ class Stories extends React.Component<{ store, err }, {showingStories}> {
 		});
 	}
 
-	showReadable(newStore?: StoreState) {
+	showReadable() {
 		this.setState({
-			showingStories: getReadableStories(newStore || this.props.store)
+			showingStories: getReadableStories(this.props.store)
 		});
 	}
 
 	render() {
 		return (
 			<>
-				<button className="btn btn-secondary" onClick={this.showArchived}>Show Archived</button>
-				<button className="btn btn-secondary" onClick={() => this.showReadable()}>Show Readable</button>
+				<Button onClick={this.showArchived} cls="secondary">Show Archived</Button>
+				<Button onClick={this.showReadable} cls="secondary">Show Readable</Button>
 				<StoriesGrid stories={this.state.showingStories} />
 			</>
 		);

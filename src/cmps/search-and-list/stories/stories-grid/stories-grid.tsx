@@ -1,6 +1,7 @@
 import React from 'react';
-import { Hit } from '../models/search-result';
-import Story from './story';
+import './stories-grid.scss';
+import { Hit } from '../../../../models/search-result';
+import Story from './story/story';
 
 const COLUMNS = {
 	title: 'col-5',

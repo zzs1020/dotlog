@@ -1,6 +1,7 @@
 import React from 'react';
-import { doFetchStories } from '../actions/story';
+import { doFetchStories } from '../../../actions/story';
 import { connect } from 'react-redux';
+import Button from '../../shared/button/button';
 
 class SearchStories extends React.Component<{ onFetchStories }, { query }> {
 	constructor(props) {
@@ -33,7 +34,7 @@ class SearchStories extends React.Component<{ onFetchStories }, { query }> {
 		return (
 			<form onSubmit={this.onSubmit} className="form-inline">
 				<input type="text" className="form-control" value={this.state.query} onChange={this.onChange} />
-				<button className="btn btn-primary" type="submit">Search</button>
+				<Button cls="primary" type="submit">Search</Button>
 			</form>
 		);
 	}
