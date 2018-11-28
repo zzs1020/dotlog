@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getFetchError, getReadableStories, getArchivedStories } from '../../../selectors/story';
-import { StoreState } from '../../../models/store-state';
+import { IStoreState } from '../../../models/store-state';
 import StoriesGrid from './stories-grid/stories-grid';
 import Button from '../../shared/button/button';
 
@@ -46,7 +46,7 @@ class Stories extends React.Component<{ store, err }, {showingStories}> {
 	}
 }
 
-const mapStateToProps = (state: StoreState) => ({
+const mapStateToProps = (state: IStoreState) => ({
 	store: state,
 	err: getFetchError(state)
 });

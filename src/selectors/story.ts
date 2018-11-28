@@ -1,21 +1,21 @@
-import { StoryState } from './../models/story-state';
-import { StoreState } from './../models/store-state';
+import { IStoryState } from './../models/story-state';
+import { IStoreState } from './../models/store-state';
 import { AxiosError } from 'axios';
-import { Hit } from '../models/search-result';
+import { IHit } from '../models/search-result';
 
-const getReadableStories = ({ storyState, archiveState }: StoreState): Hit[] => (
-	storyState.stories.filter((story: Hit) => !archiveState.includes(story.objectID))
+const getReadableStories = ({ storyState, archiveState }: IStoreState): IHit[] => (
+	storyState.stories.filter((story: IHit) => !archiveState.includes(story.objectID))
 );
 
-const getArchivedStories = ({ storyState, archiveState }: StoreState): Hit[] => (
-	storyState.stories.filter((story: Hit) => archiveState.includes(story.objectID))
+const getArchivedStories = ({ storyState, archiveState }: IStoreState): IHit[] => (
+	storyState.stories.filter((story: IHit) => archiveState.includes(story.objectID))
 );
 
-const getStories = ({ storyState }: StoreState): Hit[] => (
+const getStories = ({ storyState }: IStoreState): IHit[] => (
 	storyState.stories
 );
 
-const getFetchError = ({ storyState }: StoreState): AxiosError => (
+const getFetchError = ({ storyState }: IStoreState): AxiosError => (
 	storyState.err
 );
 

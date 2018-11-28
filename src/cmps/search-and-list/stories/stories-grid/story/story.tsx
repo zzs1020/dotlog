@@ -2,10 +2,10 @@ import React from 'react';
 import './story.scss';
 import { connect } from 'react-redux';
 import Button from '../../../../shared/button/button';
-import { Hit } from '../../../../../models/search-result';
+import { IHit } from '../../../../../models/search-result';
 import { doArchiveStory } from '../../../../../actions/archive';
 
-const Story = ({ story, cols, onArchive }: { story: Hit, cols: any, onArchive: (id) => void }) => {
+const Story = ({ story, cols, onArchive }: { story: IHit, cols: any, onArchive: (id) => void }) => {
 	const { title, url, author, num_comments, points, objectID } = story;
 
 	return (

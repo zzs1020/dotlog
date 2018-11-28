@@ -1,6 +1,6 @@
 import React from 'react';
 import './stories-grid.scss';
-import { Hit } from '../../../../models/search-result';
+import { IHit } from '../../../../models/search-result';
 import Story from './story/story';
 
 const COLUMNS = {
@@ -11,7 +11,7 @@ const COLUMNS = {
 	archive: 'col-2'
 };
 
-const StoriesGrid = ({ stories }: {stories: Hit[]}) => (
+const StoriesGrid = ({ stories }: {stories: IHit[]}) => (
 	<>
 		<div className="row titles">
 			{Object.keys(COLUMNS).map((key: string) =>
@@ -20,7 +20,7 @@ const StoriesGrid = ({ stories }: {stories: Hit[]}) => (
 				</div>
 			)}
 		</div>
-		{(stories || []).map((story: Hit) =>
+		{(stories || []).map((story: IHit) =>
 			<Story key={story.objectID} story={story} cols={COLUMNS} />
 		)}
 	</>

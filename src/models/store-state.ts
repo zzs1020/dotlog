@@ -1,6 +1,8 @@
-import { StoryState } from './story-state';
+import { IStoryState } from './story-state';
+import { ITodo } from './todo';
 
-export interface StoreState {
-	storyState: StoryState;
+export interface IStoreState {
+	storyState: IStoryState;
 	archiveState: string[];
+	todoState: ITodo[];
 }

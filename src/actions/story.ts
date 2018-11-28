@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
 import { STORIES_ADD, STORIES_FETCH, STORIES_FETCH_ERROR } from '../constants/action-types';
-import { Hit } from '../models/search-result';
+import { IHit } from '../models/search-result';
 
-const doAddStories = (stories: Hit[]) => ({
+const doAddStories = (stories: IHit[]) => ({
 	type: STORIES_ADD,
 	stories
 });

@@ -11,7 +11,7 @@
 		"member-access": false,
         "object-literal-sort-keys": false,
         "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
-        "interface-name": [true, "never-prefix"],
+        "interface-name": [true, "always-prefix"],
         "no-console": false,
         "ordered-imports": [
             true,

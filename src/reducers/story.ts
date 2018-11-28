@@ -1,21 +1,21 @@
 import { STORIES_ADD, STORIES_FETCH_ERROR } from '../constants/action-types';
-import { StoryState } from '../models/story-state';
-const INITIAL_STATE: StoryState = {
+import { IStoryState } from '../models/story-state';
+const INITIAL_STATE: IStoryState = {
 	stories: [],
 	err: null
 };
 
-const applyAddStories = (action): StoryState => ({
+const applyAddStories = (action): IStoryState => ({
 	stories: action.stories,
 	err: null
 });
 
-const applyFetchErrorStories = (action): StoryState => ({
+const applyFetchErrorStories = (action): IStoryState => ({
 	stories: [],
 	err: action.err
 });
 
-const storyReducer = (state: StoryState = INITIAL_STATE, action): StoryState => {
+const storyReducer = (state: IStoryState = INITIAL_STATE, action): IStoryState => {
 	switch (action.type) {
 		case STORIES_ADD:
 			return applyAddStories(action);

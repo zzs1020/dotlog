@@ -1,38 +1,38 @@
-export interface Title {
+export interface ITitle {
 	value: string;
 	matchLevel: string;
 	fullyHighlighted: boolean;
 	matchedWords: string[];
 }
 
-export interface Url {
+export interface IUrl {
 	value: string;
 	matchLevel: string;
 	fullyHighlighted: boolean;
 	matchedWords: string[];
 }
 
-export interface Author {
+export interface IAuthor {
 	value: string;
 	matchLevel: string;
 	matchedWords: any[];
 }
 
-export interface StoryText {
+export interface IStoryText {
 	value: string;
 	matchLevel: string;
 	matchedWords: string[];
 	fullyHighlighted?: boolean;
 }
 
-export interface HighlightResult {
-	title: Title;
-	url: Url;
-	author: Author;
-	story_text: StoryText;
+export interface IHighlightResult {
+	title: ITitle;
+	url: IUrl;
+	author: IAuthor;
+	story_text: IStoryText;
 }
 
-export interface Hit {
+export interface IHit {
 	created_at: Date;
 	title: string;
 	url: string;
@@ -48,11 +48,11 @@ export interface Hit {
 	created_at_i: number;
 	_tags: string[];
 	objectID: string;
-	_highlightResult: HighlightResult;
+	_highlightResult: IHighlightResult;
 }
 
-export interface SearchResult {
-	hits: Hit[];
+export interface ISearchResult {
+	hits: IHit[];
 	nbHits: number;
 	page: number;
 	nbPages: number;
