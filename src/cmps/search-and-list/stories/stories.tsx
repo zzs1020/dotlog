@@ -4,8 +4,19 @@ import { getFetchError, getReadableStories, getArchivedStories } from '../../../
 import { IStoreState } from '../../../models/store-state';
 import StoriesGrid from './stories-grid/stories-grid';
 import Button from '../../shared/button/button';
+import { AxiosError } from 'axios';
+import { IHit } from '../../../models/search-result';
 
-class Stories extends React.Component<{ store, err }, {showingStories}> {
+type Props = {
+	store: IStoreState,
+	err: AxiosError
+};
+
+type State = {
+	showingStories: IHit[]
+};
+
+class Stories extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 

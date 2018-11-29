@@ -1,10 +1,6 @@
 import { STORY_ARCHIVE } from '../constants/action-types';
 
-const doArchiveStory = (id: string) => ({
+export const doArchiveStory = (id: string) => ({
 	type: STORY_ARCHIVE,
-	id
+	payload: id
 });
-
-export {
-	doArchiveStory
-};

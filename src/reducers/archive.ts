@@ -12,7 +12,7 @@ const archiveReducer = (state: string[] = INITIAL_STATE, action): string[] => {
 };
 
 const applyArchiveStory = (state: string[], action): string[] => {
-	return [...state, action.id];
+	return [...state, action.payload];
 };
 
 export default archiveReducer;

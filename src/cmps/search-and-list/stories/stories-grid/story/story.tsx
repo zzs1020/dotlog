@@ -5,7 +5,13 @@ import Button from '../../../../shared/button/button';
 import { IHit } from '../../../../../models/search-result';
 import { doArchiveStory } from '../../../../../actions/archive';
 
-const Story = ({ story, cols, onArchive }: { story: IHit, cols: any, onArchive: (id) => void }) => {
+type Props = {
+	story: IHit,
+	cols: any,
+	onArchive: (id: string) => void
+};
+
+const Story = ({ story, cols, onArchive }: Props) => {
 	const { title, url, author, num_comments, points, objectID } = story;
 
 	return (

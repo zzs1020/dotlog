@@ -2,23 +2,17 @@ import { AxiosError } from 'axios';
 import { STORIES_ADD, STORIES_FETCH, STORIES_FETCH_ERROR } from '../constants/action-types';
 import { IHit } from '../models/search-result';
 
-const doAddStories = (stories: IHit[]) => ({
+export const doAddStories = (stories: IHit[]) => ({
 	type: STORIES_ADD,
-	stories
+	payload: stories
 });
 
-const doFetchStories = (query: string) => ({
+export const doFetchStories = (query: string) => ({
 	type: STORIES_FETCH,
-	query
+	payload: query
 });
 
-const doFetchErrorStories = (err: AxiosError) => ({
+export const doFetchErrorStories = (err: AxiosError) => ({
 	type: STORIES_FETCH_ERROR,
-	err
+	payload: err
 });
-
-export {
-	doAddStories,
-	doFetchStories,
-	doFetchErrorStories
-};

@@ -9,7 +9,7 @@ import { getTodos } from '../../selectors/todos';
 
 type Props = {
 	todos: ITodo[]
-}
+};
 
 const Todos = ({todos}: Props) => {
 	return (

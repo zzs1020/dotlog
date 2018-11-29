@@ -4,7 +4,8 @@ import { ITodo } from '../../../models/todo';
 
 type Props = {
 	item: ITodo
-}
+};
+
 const Todo = ({item}: Props) => {
 	return (
 		<div className="row border border-info">

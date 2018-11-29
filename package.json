@@ -14,15 +14,16 @@
         "react-scripts": "2.1.1",
         "redux": "^4.0.1",
         "redux-logger": "^3.0.6",
-        "redux-saga": "^0.16.2"
+        "redux-saga": "^0.16.2",
+        "uuid": "^3.3.2"
     },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "./node_modules/.bin/tslint ./src/**/*.ts",
-        "lintfix": "./node_modules/.bin/tslint --fix ./src/**/*.ts"
+        "lint": "./node_modules/.bin/tslint ./src/**/*.ts*",
+        "lintfix": "./node_modules/.bin/tslint --fix ./src/**/*.ts*"
     },
     "browserslist": [
         ">0.2%",

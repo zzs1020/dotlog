@@ -5,4 +5,5 @@ export interface IStoreState {
 	storyState: IStoryState;
 	archiveState: string[];
 	todoState: ITodo[];
+	todosFilterState: string;
 }

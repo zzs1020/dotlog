@@ -6,13 +6,13 @@ const INITIAL_STATE: IStoryState = {
 };
 
 const applyAddStories = (action): IStoryState => ({
-	stories: action.stories,
+	stories: action.payload,
 	err: null
 });
 
 const applyFetchErrorStories = (action): IStoryState => ({
 	stories: [],
-	err: action.err
+	err: action.payload
 });
 
 const storyReducer = (state: IStoryState = INITIAL_STATE, action): IStoryState => {

@@ -2,8 +2,17 @@ import React from 'react';
 import { doFetchStories } from '../../../actions/story';
 import { connect } from 'react-redux';
 import Button from '../../shared/button/button';
+import { Dispatch } from 'redux';
 
-class SearchStories extends React.Component<{ onFetchStories }, { query }> {
+type Props = {
+	onFetchStories: (q: string) => Dispatch
+};
+
+type State = {
+	query: string
+};
+
+class SearchStories extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 
