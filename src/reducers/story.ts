@@ -5,16 +5,6 @@ const INITIAL_STATE: IStoryState = {
 	err: null
 };
 
-const applyAddStories = (action): IStoryState => ({
-	stories: action.payload,
-	err: null
-});
-
-const applyFetchErrorStories = (action): IStoryState => ({
-	stories: [],
-	err: action.payload
-});
-
 const storyReducer = (state: IStoryState = INITIAL_STATE, action): IStoryState => {
 	switch (action.type) {
 		case STORIES_ADD:
@@ -25,5 +15,15 @@ const storyReducer = (state: IStoryState = INITIAL_STATE, action): IStoryState =
 			return state;
 	}
 };
+
+const applyAddStories = (action): IStoryState => ({
+	stories: action.payload,
+	err: null
+});
+
+const applyFetchErrorStories = (action): IStoryState => ({
+	stories: [],
+	err: action.payload
+});
 
 export default storyReducer;
