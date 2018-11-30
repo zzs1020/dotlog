@@ -2,10 +2,10 @@ import React from 'react';
 import Todo from './todo/todo';
 import './todos.scss';
 import { ITodo } from '../../models/todo';
-import Button from '../shared/button/button';
 import { connect } from 'react-redux';
 import { IStoreState } from '../../models/store-state';
 import { getTodos } from '../../selectors/todos';
+import TodosFilter from './filter/todos-filter';
 
 type Props = {
 	todos: ITodo[]
@@ -18,7 +18,9 @@ const Todos = ({todos}: Props) => {
 			{
 				todos.map(todo => <Todo key={todo.id} item={todo} />)
 			}
-			<Button>Show Completed</Button>
+			<div className="todo-footer">
+				<TodosFilter />
+			</div>
 		</div>
 	);
 };

@@ -4,4 +4,11 @@
   left: 0;
   width: 200px;
   height: 300px;
+
+  .todo-footer {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 5px;
+    padding-left: 15%;
+  }
 }

@@ -8,12 +8,14 @@ type Props = {
 
 const Todo = ({item}: Props) => {
 	return (
-		<div className="row border border-info">
-			<div className="col-1">
-				<input type="checkbox" />
-			</div>
-			<div className="col-11">
-				<a href={item.link}>{item.name}</a>
+		<div className="container-fluid border border-info">
+			<div className="row">
+				<div className="col-2">
+					<input type="checkbox" />
+				</div>
+				<div className="col">
+					<a href={item.link}>{item.name}</a>
+				</div>
 			</div>
 		</div>
 	);
