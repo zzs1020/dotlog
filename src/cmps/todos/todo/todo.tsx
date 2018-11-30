@@ -18,7 +18,7 @@ const Todo = ({item, onToggle}: Props) => {
 					<input type="checkbox" checked={item.completed} onChange={() => onToggle(item)} />
 				</div>
 				<div className="col">
-					<a href={item.link}>{item.name}</a>
+					<a href={item.link}><span className={item.completed ? 'crossed' : ''}>{item.name}</span></a>
 				</div>
 			</div>
 		</div>
