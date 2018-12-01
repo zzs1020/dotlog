@@ -6,6 +6,10 @@ import App from './cmps/app';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
 import { Provider } from 'react-redux';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faArchive, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faArchive, faPlus);
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Button from '../../../../shared/button/button';
 import { IHit } from '../../../../../models/search-result';
 import { doArchiveStory } from '../../../../../actions/archive';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
 	story: IHit,
@@ -28,8 +29,9 @@ const Story = ({ story, cols, onArchive }: Props) => {
 			<div className={cols.points}>
 				{points}
 			</div>
-			<div className={cols.archive}>
-				<Button cls="outline-danger" onClick={() => onArchive(objectID)}>Archive</Button>
+			<div className={cols.functions}>
+				<Button cls="link" onClick={() => onArchive(objectID)}><FontAwesomeIcon icon="archive"/></Button>
+				<Button cls="link" onClick={() => onArchive(objectID)}><FontAwesomeIcon icon={['fas', 'plus']}/></Button>
 			</div>
 		</div>
 	);

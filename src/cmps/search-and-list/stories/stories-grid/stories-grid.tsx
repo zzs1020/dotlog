@@ -8,7 +8,7 @@ const COLUMNS = {
 	author: 'col-3',
 	comments: 'col-1',
 	points: 'col-1',
-	archive: 'col-2'
+	functions: 'col-2'
 };
 
 const StoriesGrid = ({ stories }: {stories: IHit[]}) => (
