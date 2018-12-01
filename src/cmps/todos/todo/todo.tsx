@@ -12,37 +12,42 @@ type Props = {
 };
 
 type State = {
-	opacity: number
-}
+	opacity: number,
+	stopAnimation: boolean
+};
 
 class Todo extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			stopAnimation: true, // don't let Spring auto animating when init component
 			opacity: 1
 		};
 
-		this.toggle = this.toggle.bind(this);
+		this.fade = this.fade.bind(this);
 	}
 
-	toggle(item) {
+	fade() {
 		this.setState({
-			opacity: 0
+			stopAnimation: false, // start animating
+			opacity: 0 // end status
 		});
-		setTimeout(() => this.props.onToggle(item), 600);
 	}
 
 	render() {
-		const {item} = this.props;
+		const {item, onToggle} = this.props;
+		const {opacity, stopAnimation} = this.state;
+
 		return (
-			<Spring from={{opacity: 1}} to={this.state}>
+			// onRest get call after animation finishes
+			<Spring immediate={stopAnimation} to={{opacity}} onRest={() => onToggle(item)}>
 				{props =>
 					<div style={props}>
 						<div className="container-fluid border border-info">
 							<div className="row">
 								<div className="col-2">
-									<input type="checkbox" checked={item.completed} onChange={() => this.toggle(item)} />
+									<input type="checkbox" checked={item.completed} onChange={this.fade} />
 								</div>
 								<div className="col">
 									<a href={item.link}><span className={item.completed ? 'crossed' : ''}>{item.name}</span></a>
