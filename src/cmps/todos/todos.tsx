@@ -14,7 +14,7 @@ type Props = {
 const Todos = ({todos}: Props) => {
 	return (
 		<div className="todo-container border border-dark">
-			<h4>Read Later</h4>
+			<h4>Reading List</h4>
 			{
 				todos.map(todo => <Todo key={todo.id} item={todo} />)
 			}

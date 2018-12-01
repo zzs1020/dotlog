@@ -5,14 +5,16 @@ import Button from '../../../../shared/button/button';
 import { IHit } from '../../../../../models/search-result';
 import { doArchiveStory } from '../../../../../actions/archive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { doAddTodo } from '../../../../../actions/todos';
 
 type Props = {
 	story: IHit,
 	cols: any,
-	onArchive: (id: string) => void
+	onArchive: (id: string) => void,
+	onAddTodo: (todo: IHit) => void
 };
 
-const Story = ({ story, cols, onArchive }: Props) => {
+const Story = ({ story, cols, onArchive, onAddTodo }: Props) => {
 	const { title, url, author, num_comments, points, objectID } = story;
 
 	return (
@@ -30,15 +32,16 @@ const Story = ({ story, cols, onArchive }: Props) => {
 				{points}
 			</div>
 			<div className={cols.functions}>
-				<Button cls="link" onClick={() => onArchive(objectID)}><FontAwesomeIcon icon="archive"/></Button>
-				<Button cls="link" onClick={() => onArchive(objectID)}><FontAwesomeIcon icon={['fas', 'plus']}/></Button>
+				<Button cls="link" onClick={() => onArchive(objectID)}><FontAwesomeIcon icon="archive" title="Archive"/></Button>
+				<Button cls="link" onClick={() => onAddTodo(story)}><FontAwesomeIcon icon={['fas', 'plus']} title="Add to Reading List"/></Button>
 			</div>
 		</div>
 	);
 };
 
 const mapDispatchToProps = dispatch => ({
-	onArchive: (id: string) => dispatch(doArchiveStory(id))
+	onArchive: (id: string) => dispatch(doArchiveStory(id)),
+	onAddTodo: (story: IHit) => dispatch(doAddTodo(story))
 });
 
 export default connect(
