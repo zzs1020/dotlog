@@ -1,11 +1,12 @@
 import { ITodo } from '../models/todo';
 import { TODO_ADD, TODO_TOGGLE } from '../constants/action-types';
 import produce from 'immer';
+import { IAction } from '../models/action';
 
 const INIT_STATE: ITodo[] = [
 ];
 
-const todoReducer = (state: ITodo[] = INIT_STATE, action) => {
+const todoReducer = (state: ITodo[] = INIT_STATE, action: IAction<ITodo>) => {
 	switch (action.type) {
 		case TODO_ADD:
 			return applyAdd(state, action);
@@ -16,10 +17,8 @@ const todoReducer = (state: ITodo[] = INIT_STATE, action) => {
 	}
 };
 
-const applyAdd = (base, action) => {
-	return produce(base, draftState => {
-		draftState.push(action.payload);
-	});
+const applyAdd = (state, action) => {
+	return [...state, action.payload];
 };
 
 const applyToggle = (baseState, action) => {

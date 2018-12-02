@@ -15,6 +15,17 @@
         "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
         "interface-name": [true, "always-prefix"],
         "no-console": false,
+        "no-angle-bracket-type-assertion": false,
+        "whitespace": [true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-module",
+            "check-separator",
+            "check-rest-spread",
+            "check-type",
+            "check-type-operator",
+            "check-preblock"],
         "ordered-imports": [
             true,
             {

@@ -29,4 +29,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## My Notes
 
-1. Don't need to type action because action.payload is always same or part of it's state, definition can be found there.
+1. Redefined Action to Action<T>, where T is payload type. Because same action can be used in other reducers

@@ -4,13 +4,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SearchAndList from './search-and-list/search-and-list';
 import Header from './header/header';
 import Todos from './todos/todos';
+import Notifications from './shared/notification/notifications';
 
 const App = () => (
 	<div className="container-fluid">
 		<BrowserRouter>
 			<>
-				<Header />
+				<Notifications />
 				<Todos />
+				<Header />
 				<Switch>
 					<Route path="/" exact component={SearchAndList} />
 				</Switch>

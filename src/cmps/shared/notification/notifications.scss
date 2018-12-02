@@ -1,0 +1,12 @@
+.notifications {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 200px;
+  background: white;
+  z-index: 2;
+
+  .notification {
+    position: relative;
+  }
+}

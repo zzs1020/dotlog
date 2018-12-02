@@ -3,12 +3,14 @@ import archiveReducer from './archive';
 import storyReducer from './story';
 import todoReducer from './todo';
 import TodosFilterReducer from './todos-filter';
+import notificationReducer from './notification.reducer';
 
 const rootReducer = combineReducers({
 	storyState: storyReducer,
 	archiveState: archiveReducer,
 	todoState: todoReducer,
-	todosFilterState: TodosFilterReducer
+	todosFilterState: TodosFilterReducer,
+	notificationState: notificationReducer
 });
 
 export default rootReducer;

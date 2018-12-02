@@ -1,11 +1,13 @@
 import { STORIES_ADD, STORIES_FETCH_ERROR } from '../constants/action-types';
 import { IStoryState } from '../models/story-state';
+import { IAction } from '../models/action';
+import { IHit } from '../models/search-result';
 const INITIAL_STATE: IStoryState = {
 	stories: [],
 	err: null
 };
 
-const storyReducer = (state: IStoryState = INITIAL_STATE, action): IStoryState => {
+const storyReducer = (state: IStoryState = INITIAL_STATE, action: IAction<IHit>): IStoryState => {
 	switch (action.type) {
 		case STORIES_ADD:
 			return applyAddStories(action);
