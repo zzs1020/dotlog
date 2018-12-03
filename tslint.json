@@ -6,7 +6,7 @@
     "jsRules": {},
     "rules": {
         "quotemark": [true, "single", "jsx-double"],
-		"indent": [true, "tabs", 4],
+		"indent": [false],
 		"arrow-parens": false,
 		"member-access": false,
         "object-literal-sort-keys": false,

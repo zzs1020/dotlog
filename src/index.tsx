@@ -7,9 +7,9 @@ import * as serviceWorker from './serviceWorker';
 import store from './store';
 import { Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faArchive, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleRight, faArchive, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faArchive, faPlus);
+library.add(faArchive, faPlus, faAngleDoubleRight);
 
 ReactDOM.render(
 	<Provider store={store}>
