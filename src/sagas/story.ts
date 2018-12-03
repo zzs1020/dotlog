@@ -3,7 +3,7 @@ import { doAddStories, doFetchErrorStories } from '../actions/story';
 import { fetchStories } from '../api/story';
 
 function* handleFetchStories(action) {
-	const {query} = action;
+	const query = action.payload;
 	try {
 		const result = yield call(fetchStories, query);
 		yield put(doAddStories(result.hits));

@@ -1,14 +1,13 @@
 import React from 'react';
 import './todo.scss';
 import { ITodo } from '../../../models/todo';
-import { Dispatch } from 'redux';
 import { doToggleTodo } from '../../../actions/todos';
 import { connect } from 'react-redux';
 import { Spring } from 'react-spring';
 
 type Props = {
 	item: ITodo,
-	onToggle: (item: ITodo) => Dispatch
+	onToggle: (item: ITodo) => void
 };
 
 type State = {

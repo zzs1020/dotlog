@@ -2,10 +2,9 @@ import React from 'react';
 import { doFetchStories } from '../../../actions/story';
 import { connect } from 'react-redux';
 import Button from '../../shared/button/button';
-import { Dispatch } from 'redux';
 
 type Props = {
-	onFetchStories: (q: string) => Dispatch
+	onFetchStories: (q: string) => void
 };
 
 type State = {

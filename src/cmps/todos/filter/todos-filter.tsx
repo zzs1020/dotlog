@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../../shared/button/button';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { doSetFilter } from '../../../actions/todos';
 import { TODO_SHOW_COMPLETED, TODO_SHOW_INCOMPLETE } from '../../../constants/action-types';
@@ -8,7 +7,7 @@ import { IStoreState } from '../../../models/store-state';
 
 type Props = {
 	currentFilter: string,
-	onSetFilter: (filterType: string) => Dispatch
+	onSetFilter: (filterType: string) => void
 };
 
 const TodosFilter = ({currentFilter, onSetFilter}: Props) => {
