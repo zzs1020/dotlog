@@ -25,7 +25,7 @@ const Story = ({ story, cols, todos, onArchive, onAddTodo }: Props) => {
 	return (
 		<div className="row my-1">
 			<div className={cols.title}>
-				<a href={url}>{title}</a>
+				<a target="_blank" href={url}>{title}</a>
 			</div>
 			<div className={cols.author}>
 				{author}
