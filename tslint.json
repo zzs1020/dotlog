@@ -1,5 +1,5 @@
 {
-    "defaultSeverity": "error",
+    "defaultSeverity": "warning",
     "extends": [
         "tslint:recommended"
     ],
@@ -14,7 +14,9 @@
         "max-line-length": [true, 140],
         "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
         "interface-name": [true, "always-prefix"],
-        "no-console": false,
+        "no-console": true,
+        "no-empty": false,
+        "max-classes-per-file": [true, 1, "exclude-class-expressions"],
         "no-angle-bracket-type-assertion": false,
         "whitespace": [true,
             "check-branch",

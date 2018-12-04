@@ -1,4 +1,4 @@
-import { TODO_ADD, TODO_SET_FILTER, TODO_TOGGLE } from '../constants/action-types';
+import { TODO_ADD, TODO_SET_FILTER, TODO_TOGGLE, TODO_SET_NAME } from '../constants/action-types';
 import { IHit } from '../models/search-result';
 import { ITodo } from '../models/todo';
 
@@ -14,3 +14,5 @@ export const doAddTodo = (story: IHit) => {
 		payload: todo
 	};
 };
+
+export const doSaveTodoName = (id: string, name: string) => ({type: TODO_SET_NAME, payload: {id, name}});

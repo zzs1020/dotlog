@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import './todo.scss';
 import { ITodo } from '../../../models/todo';
-import { doToggleTodo } from '../../../actions/todos';
+import { doToggleTodo, doSaveTodoName } from '../../../actions/todos';
 import { connect } from 'react-redux';
 import { Spring } from 'react-spring';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
 	item: ITodo,
-	onToggle: (item: ITodo) => void
+	onToggle: (item: ITodo) => void,
+	onSave: (id: string, newName: string) => void
 };
 
 type State = {
 	opacity: number,
-	stopAnimation: boolean
+	stopAnimation: boolean,
+	editable: boolean,
+	name: string
 };
 
 class Todo extends React.Component<Props, State> {
@@ -21,10 +25,15 @@ class Todo extends React.Component<Props, State> {
 
 		this.state = {
 			stopAnimation: true, // don't let Spring auto animating when init component
-			opacity: 1
+			opacity: 1,
+			editable: false,
+			name: this.props.item.name
 		};
 
 		this.fade = this.fade.bind(this);
+		this.changeName = this.changeName.bind(this);
+		this.changeEditable = this.changeEditable.bind(this);
+		this.saveName = this.saveName.bind(this);
 	}
 
 	fade() {
@@ -34,13 +43,28 @@ class Todo extends React.Component<Props, State> {
 		});
 	}
 
+	changeName(e: ChangeEvent<HTMLInputElement>) {
+		this.setState({
+			name: e.target.value
+		});
+	}
+
+	saveName() {
+		this.props.onSave(this.props.item.id, this.state.name);
+		this.setState({ editable: false });
+	}
+
+	changeEditable() {
+		this.setState({ editable: true });
+	}
+
 	render() {
-		const {item, onToggle} = this.props;
-		const {opacity, stopAnimation} = this.state;
+		const { item, onToggle } = this.props;
+		const { opacity, stopAnimation, editable, name } = this.state;
 
 		return (
 			// onRest get call after animation finishes
-			<Spring immediate={stopAnimation} to={{opacity}} onRest={() => onToggle(item)}>
+			<Spring immediate={stopAnimation} to={{ opacity }} onRest={() => onToggle(item)}>
 				{props =>
 					<div style={props}>
 						<div className="container-fluid border border-info">
@@ -49,8 +73,11 @@ class Todo extends React.Component<Props, State> {
 									<input type="checkbox" checked={item.completed} onChange={this.fade} />
 								</div>
 								<div className="col">
-									<a href={item.link}><span className={item.completed ? 'crossed' : ''}>{item.name}</span></a>
+									{editable ? <input type="text" autoFocus value={name} onChange={this.changeName} onBlur={this.saveName} /> :
+										<a href={item.link} target="_blank"><span className={item.completed ? 'crossed' : ''}>{name}</span></a>
+									}
 								</div>
+								<div className="col-2" onClick={this.changeEditable}><FontAwesomeIcon icon={['far', 'edit']} /></div>
 							</div>
 						</div>
 					</div>}
@@ -61,7 +88,8 @@ class Todo extends React.Component<Props, State> {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onToggle: item => dispatch(doToggleTodo(item))
+		onToggle: item => dispatch(doToggleTodo(item)),
+		onSave: (id, newName) => dispatch(doSaveTodoName(id, newName))
 	};
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, RefObject } from 'react';
 import Todo from './todo/todo';
 import './todos.scss';
 import { ITodo } from '../../models/todo';
@@ -10,14 +10,17 @@ import { Spring } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
-	todos: ITodo[]
+	todos: ITodo[],
+	domRef: RefObject<HTMLDivElement>
+	addClickListener: () => void,
+	removeClickListener: () => void
 };
 
 type State = {
 	offset: string
 };
 
-class Todos extends React.Component<Props, State> {
+class Todos extends Component<Props, State> {
 	constructor(props) {
 		super(props);
 
@@ -26,26 +29,39 @@ class Todos extends React.Component<Props, State> {
 		};
 
 		this.toggle = this.toggle.bind(this);
+		this.handleClickOutside = this.handleClickOutside.bind(this);
+	}
+
+	// withClickOutside hooks, child cmp have to implement it's logic itself
+	handleClickOutside() {
+		this.toggle();
 	}
 
 	toggle() {
 		this.setState(prevState => {
-			const offset = prevState.offset === '0px' ? '-200px' : '0px';
-			return {offset};
+			let offset;
+			if (prevState.offset === '-200px') {
+				offset = '0px';
+				this.props.addClickListener();
+			} else {
+				offset = '-200px';
+				this.props.removeClickListener();
+			}
+			return { offset };
 		});
 	}
 
 	render() {
-		const {todos} = this.props;
-		const {offset} = this.state;
+		const { todos, domRef } = this.props;
+		const { offset } = this.state;
 		return (
-			<Spring to={{left: offset}}>
+			<Spring to={{ left: offset }}>
 				{props =>
-					<div style={props} className="todo-container border border-dark">
+					<div ref={domRef} style={props} className="todo-container border border-dark">
 						<div className="opener" title="Open Reading List" onClick={this.toggle}>
 							{/*show green only when user has incomplete todos*/}
 							<FontAwesomeIcon icon={['fas', 'angle-double-right']} rotation={offset === '0px' ? 180 : null}
-							                 color={todos.length > 0 && !todos[0].completed ? 'lawngreen' : 'black'}/>
+								color={todos.length > 0 && !todos[0].completed ? 'lawngreen' : 'black'} />
 						</div>
 						<h4>Reading List</h4>
 						{
@@ -60,10 +76,57 @@ class Todos extends React.Component<Props, State> {
 	}
 }
 
+/**
+ * a HOC used to detect if user clicked out side of designated area
+ * Usage:
+ * 		this will give child component 2 methods to directly use,
+ * 		but user must tell where is start node by using domRef prop, also need to implement handleClickOutside logic
+ */
+const withClickOutside = (ChildComponent) => {
+	return class WithClickOutside extends Component {
+		childComponent: RefObject<Component>; // refer to component instance in case to call its method
+		startNode: RefObject<HTMLDivElement>; // refer to component's top DOM HTML element, from where to decide if it's outside or not
+
+		constructor(props) {
+			super(props);
+			this.childComponent = React.createRef();
+			this.startNode = React.createRef();
+
+			// if don't bind this, then when child component run the method, this.handleGlobalClick will be refer to undefined
+			this.addListener = this.addListener.bind(this);
+			this.removeListener = this.removeListener.bind(this);
+			this.handleGlobalClick = this.handleGlobalClick.bind(this);
+		}
+
+		// use this method to start listening
+		addListener() {
+			document.addEventListener('click', this.handleGlobalClick, false);
+		}
+
+		// remove it when you don't use it to prevent memory leak
+		removeListener() {
+			document.removeEventListener('click', this.handleGlobalClick, false);
+		}
+
+		handleGlobalClick(e: MouseEvent) {
+			// clicked part is not descendant of this component, close
+			if (!this.startNode.current.contains(e.target as Node)) {
+				// @ts-ignore child component must implement its own logic
+				this.childComponent.current.handleClickOutside();
+			}
+		}
+
+		render() {
+			return <ChildComponent domRef={this.startNode} ref={this.childComponent} {...this.props}
+						addClickListener={this.addListener} removeClickListener={this.removeListener} />;
+		}
+	};
+};
+
 const mapStateToProps = (state: IStoreState) => ({
 	todos: getTodos(state)
 });
 
 export default connect(
 	mapStateToProps
-)(Todos);
+)(withClickOutside(Todos));
