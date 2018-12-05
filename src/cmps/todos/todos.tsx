@@ -63,7 +63,8 @@ class Todos extends Component<Props, State> {
 							<FontAwesomeIcon icon={['fas', 'angle-double-right']} rotation={offset === '0px' ? 180 : null}
 								color={todos.length > 0 && !todos[0].completed ? 'lawngreen' : 'black'} />
 						</div>
-						<h4>Reading List</h4>
+
+						<h4>Reading List ({todos.length} stories)</h4>
 						{
 							todos.map(todo => <Todo key={todo.id} item={todo} />)
 						}
