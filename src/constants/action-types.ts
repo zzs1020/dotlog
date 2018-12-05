@@ -6,6 +6,7 @@ export const STORIES_ADD = 'STORIES_ADD';
 export const HTTP_ERROR = 'HTTP_ERROR';
 
 export const TODO_ADD = 'TODO_ADD';
+export const TODO_REMOVE = 'TODO_REMOVE';
 export const TODO_TOGGLE = 'TODO_TOGGLE';
 export const TODO_SET_NAME = 'TODO_SET_NAME';
 export const TODO_SET_FILTER = 'TODO_SET_FILTER';
