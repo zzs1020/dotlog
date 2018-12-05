@@ -1,15 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getFetchError, getReadableStories, getArchivedStories } from '../../../selectors/story';
+import { getReadableStories, getArchivedStories } from '../../../selectors/story';
 import { IStoreState } from '../../../models/store-state';
 import StoriesGrid from './stories-grid/stories-grid';
 import Button from '../../shared/button/button';
-import { AxiosError } from 'axios';
 import { IHit } from '../../../models/search-result';
 
 type Props = {
-	store: IStoreState,
-	err: AxiosError
+	store: IStoreState
 };
 
 type State = {
@@ -58,8 +56,7 @@ class Stories extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: IStoreState) => ({
-	store: state,
-	err: getFetchError(state)
+	store: state
 });
 
 export default connect(

@@ -1,9 +1,9 @@
-import { IStoryState } from './story-state';
 import { ITodo } from './todo';
 import { INotification } from './notification';
+import { IHit } from './search-result';
 
 export interface IStoreState {
-	storyState: IStoryState;
+	storyState: IHit[];
 	archiveState: string[];
 	todoState: ITodo[];
 	todosFilterState: string;

@@ -2,7 +2,8 @@ export const STORY_ARCHIVE = 'STORY_ARCHIVE';
 
 export const STORIES_FETCH = 'STORIES_FETCH';
 export const STORIES_ADD = 'STORIES_ADD';
-export const STORIES_FETCH_ERROR = 'STORIES_FETCH_ERROR';
+
+export const HTTP_ERROR = 'HTTP_ERROR';
 
 export const TODO_ADD = 'TODO_ADD';
 export const TODO_TOGGLE = 'TODO_TOGGLE';

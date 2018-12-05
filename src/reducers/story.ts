@@ -1,31 +1,17 @@
-import { STORIES_ADD, STORIES_FETCH_ERROR } from '../constants/action-types';
-import { IStoryState } from '../models/story-state';
+import { STORIES_ADD } from '../constants/action-types';
 import { IAction } from '../models/action';
 import { IHit } from '../models/search-result';
-const INITIAL_STATE: IStoryState = {
-	stories: [],
-	err: null
-};
+const INITIAL_STATE: IHit[] = [];
 
-const storyReducer = (state: IStoryState = INITIAL_STATE, action: IAction<IHit>): IStoryState => {
+const storyReducer = (state: IHit[] = INITIAL_STATE, action: IAction<IHit[]>) => {
 	switch (action.type) {
 		case STORIES_ADD:
 			return applyAddStories(action);
-		case STORIES_FETCH_ERROR:
-			return applyFetchErrorStories(action);
 		default:
 			return state;
 	}
 };
 
-const applyAddStories = (action): IStoryState => ({
-	stories: action.payload,
-	err: null
-});
-
-const applyFetchErrorStories = (action): IStoryState => ({
-	stories: [],
-	err: action.payload
-});
+const applyAddStories = (action: IAction<IHit[]>) => action.payload;
 
 export default storyReducer;

@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects';
-import { doAddStories, doFetchErrorStories } from '../actions/story';
+import { doAddStories, doFetchError } from '../actions/story';
 import { fetchStories } from '../api/story';
 
 function* handleFetchStories(action) {
@@ -8,7 +8,7 @@ function* handleFetchStories(action) {
 		const result = yield call(fetchStories, query);
 		yield put(doAddStories(result.hits));
 	} catch (err) {
-		yield put(doFetchErrorStories(err));
+		yield put(doFetchError(err));
 	}
 }
 
