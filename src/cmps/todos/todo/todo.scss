@@ -1,3 +1,9 @@
 .crossed {
   text-decoration: line-through;
 }
+
+.todo-link {
+  font-size: 0.9rem;
+  line-height: 1.2; // can't be used on inline ele
+  display: inline-block;
+}

@@ -2,6 +2,21 @@
     "name": "muwu-news",
     "version": "0.1.0",
     "private": true,
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "lint": "./node_modules/.bin/tslint ./src/**/*.ts*",
+        "lintfix": "./node_modules/.bin/tslint --fix ./src/**/*.ts*",
+        "analyze": "node analyze"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ],
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.8",
         "@fortawesome/free-regular-svg-icons": "^5.5.0",
@@ -14,29 +29,15 @@
         "node-sass": "^4.10.0",
         "react": "^16.6.1",
         "react-dom": "^16.6.1",
+        "react-dragula": "^1.1.17",
         "react-redux": "^5.1.1",
         "react-router-dom": "^4.3.1",
         "react-scripts": "2.1.1",
         "react-spring": "^6.1.10",
         "redux": "^4.0.1",
-        "redux-logger": "^3.0.6",
         "redux-saga": "^0.16.2",
         "uuid": "^3.3.2"
     },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "lint": "./node_modules/.bin/tslint ./src/**/*.ts*",
-        "lintfix": "./node_modules/.bin/tslint --fix ./src/**/*.ts*"
-    },
-    "browserslist": [
-        ">0.2%",
-        "not dead",
-        "not ie <= 11",
-        "not op_mini all"
-    ],
     "devDependencies": {
         "@types/jest": "^23.3.9",
         "@types/node": "^10.12.6",
@@ -45,7 +46,9 @@
         "@types/react-redux": "^6.0.9",
         "@types/react-router-dom": "^4.3.1",
         "@types/redux-logger": "^3.0.6",
+        "redux-logger": "^3.0.6",
         "tslint": "^5.11.0",
-        "typescript": "^3.1.6"
+        "typescript": "^3.1.6",
+        "webpack-bundle-analyzer": "^3.0.3"
     }
 }

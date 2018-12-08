@@ -51,34 +51,32 @@ class Todo extends React.Component<Props, State> {
 
 	saveName() {
 		this.props.onSave(this.props.item.id, this.state.name);
-		this.setState({ editable: false });
+		this.setState({editable: false});
 	}
 
 	changeEditable() {
-		this.setState({ editable: true });
+		this.setState({editable: true});
 	}
 
 	render() {
-		const { item, onToggle } = this.props;
-		const { opacity, stopAnimation, editable, name } = this.state;
+		const {item, onToggle} = this.props;
+		const {opacity, stopAnimation, editable, name} = this.state;
 
 		return (
 			// onRest get call after animation finishes
-			<Spring immediate={stopAnimation} to={{ opacity }} onRest={() => onToggle(item)}>
+			<Spring immediate={stopAnimation} to={{opacity}} onRest={() => onToggle(item)}>
 				{props =>
 					<div style={props}>
-						<div className="container-fluid border border-info">
-							<div className="row">
-								<div className="col-2">
-									<input type="checkbox" checked={item.completed} onChange={this.fade} />
-								</div>
-								<div className="col">
-									{editable ? <input type="text" autoFocus value={name} onChange={this.changeName} onBlur={this.saveName} /> :
-										<a href={item.link} target="_blank"><span className={item.completed ? 'crossed' : ''}>{name}</span></a>
-									}
-								</div>
-								<div className="col-2" onClick={this.changeEditable}><FontAwesomeIcon icon={['far', 'edit']} /></div>
+						<div className="container-fluid border border-info row">
+							<div className="col-auto">
+								<input type="checkbox" checked={item.completed} onChange={this.fade} />
 							</div>
+							<div className="col">
+								{editable ? <input type="text" autoFocus value={name} onChange={this.changeName} onBlur={this.saveName} /> :
+									<a href={item.link} target="_blank" className={`todo-link ${item.completed ? 'crossed' : ''}`}>{name}</a>
+								}
+							</div>
+							<div className="col-auto" onClick={this.changeEditable}><FontAwesomeIcon icon={['far', 'edit']} /></div>
 						</div>
 					</div>}
 			</Spring>
