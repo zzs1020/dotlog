@@ -4,7 +4,7 @@ import { IHit } from '../models/search-result';
 
 export const doAddStories = (hits: IHit[]) => {
 	// some hits are because finding keys on comments/authors, which may don't have a story
-	const stories = hits.filter(hit => hit.title);
+	const stories = hits.filter(hit => hit.title && hit.url);
 	return {
 		type: STORIES_ADD,
 			payload: stories

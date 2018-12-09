@@ -67,7 +67,7 @@ class Todo extends React.Component<Props, State> {
 			<Spring immediate={stopAnimation} to={{opacity}} onRest={() => onToggle(item)}>
 				{props =>
 					<div style={props}>
-						<div className="container-fluid border border-info row">
+						<div className="container-fluid border-bottom border-secondary row pt-1">
 							<div className="col-auto">
 								<input type="checkbox" checked={item.completed} onChange={this.fade} />
 							</div>

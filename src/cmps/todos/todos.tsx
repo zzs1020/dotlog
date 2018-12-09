@@ -66,7 +66,7 @@ class Todos extends Component<Props, State> {
 		return (
 			<Spring to={{left: offset}}>
 				{props =>
-					<div ref={domRef} style={props} className="todo-container border border-dark">
+					<div ref={domRef} style={props} className="reading-list border border-dark">
 						<div className="opener" title="Open Reading List" onClick={this.toggle}>
 							{/*show green only when user has incomplete todos*/}
 							<FontAwesomeIcon icon={['fas', 'angle-double-right']} rotation={offset === '0px' ? 180 : null}
@@ -74,12 +74,12 @@ class Todos extends Component<Props, State> {
 						</div>
 
 						<h4>Reading List ({todos.length} stories)</h4>
-						<div ref={this.dragulaDecorator}>
+						<div className="todos-container" ref={this.dragulaDecorator}>
 							{
 								todos.map(todo => <Todo key={todo.id} item={todo} />)
 							}
 						</div>
-						<div className="todo-footer">
+						<div className="todos-footer">
 							<TodosFilter />
 						</div>
 					</div>}
