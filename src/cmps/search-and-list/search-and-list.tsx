@@ -1,6 +1,7 @@
 import React from 'react';
 import Stories from './stories/stories';
 import SearchStories from './search-stories/search-stories';
+import Pagination from './pagination/pagination';
 
 const SearchAndList = () => (
 	<>
@@ -8,6 +9,7 @@ const SearchAndList = () => (
 			<SearchStories />
 		</div>
 		<Stories />
+		<Pagination />
 	</>
 );
 
