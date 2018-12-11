@@ -5,13 +5,19 @@ import { IStoreState } from '../../../models/store-state';
 import StoriesGrid from './stories-grid/stories-grid';
 import Button from '../../shared/button/button';
 import { IHit } from '../../../models/search-result';
+import { doFetchStories } from '../../../actions/story';
+import { STORIES_FETCH } from '../../../constants/action-types';
+import { doCleanError } from '../../../actions/err.action';
 
 type Props = {
-	store: IStoreState
+	store: IStoreState,
+	onFetchStories: (query, page) => void,
+	cleanErr: (id) => void
 };
 
 type State = {
-	showingStories: IHit[]
+	showingStories: IHit[],
+	fetchingPage: number
 };
 
 class Stories extends React.Component<Props, State> {
@@ -19,17 +25,53 @@ class Stories extends React.Component<Props, State> {
 		super(props);
 
 		this.state = {
-			showingStories: []
+			showingStories: [],
+			fetchingPage: 0 // is not fetching
 		};
 
 		this.showArchived = this.showArchived.bind(this);
 		this.showReadable = this.showReadable.bind(this);
+		this.infinityScroll = this.infinityScroll.bind(this);
+	}
+
+	componentDidMount() {
+		document.addEventListener('scroll', this.infinityScroll, true);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('scroll', this.infinityScroll, true);
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.store !== prevProps.store) {
+		if (this.props.store.storyState !== prevProps.store.storyState) {
+			// everytime got new stories, show readable as default
 			this.showReadable();
+		} else if (this.props.store.errState !== prevProps.store.errState) {
+			// if http err happens, reset fetchingPage indicate user can fetch that page again
+			const err = this.props.store.errState.find(error => error.type === STORIES_FETCH);
+			if (err) {
+				this.setState({ fetchingPage: 0 });
+				this.props.cleanErr(err.id);
+			}
 		}
+	}
+
+	// moniters where user is and starting fetching data at some point
+	infinityScroll() {
+		const currentScrollPosition = this.getScrollPercentage();
+		if (currentScrollPosition > 0.8 && currentScrollPosition < 0.82) { // one scroll can fire multiple event, so give it a threshold
+			const { query, page } = this.props.store.searchState;
+			const nextPage = page + 1;
+			// if next page is alraedy been fetching, don't call it again
+			if (this.state.fetchingPage !== nextPage) {
+				this.props.onFetchStories(query, nextPage);
+				this.setState({ fetchingPage: nextPage });
+			}
+		}
+	}
+
+	getScrollPercentage() {
+		return window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
 	}
 
 	showArchived() {
@@ -59,6 +101,12 @@ const mapStateToProps = (state: IStoreState) => ({
 	store: state
 });
 
+const mapDispatchToProps = dispatch => ({
+	onFetchStories: (query, page) => dispatch(doFetchStories(query, page)),
+	cleanErr: (errId) => dispatch(doCleanError(errId))
+});
+
 export default connect(
-	mapStateToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(Stories);

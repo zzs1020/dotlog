@@ -1,8 +1,10 @@
+import uuid from 'uuid/v4';
 import { AxiosError } from 'axios';
-import { STORIES_ADD, STORIES_FETCH, HTTP_ERROR } from '../constants/action-types';
+import { STORIES_ADD, STORIES_FETCH, ERROR_HTTP } from '../constants/action-types';
 import { IHit } from '../models/search-result';
 import { IAction } from '../models/action';
 import { ICurrentSearch } from '../models/search-state';
+import { IErr } from '../models/err';
 
 export const doAddStories = (hits: IHit[]) => {
 	// some hits are because finding keys on comments/authors, which may don't have a story
@@ -21,7 +23,11 @@ export const doFetchStories = (query: string, page: number = 0): IAction<ICurren
 	}
 });
 
-export const doFetchError = (err: AxiosError) => ({
-	type: HTTP_ERROR,
-	payload: err
+export const doFetchError = (err: AxiosError, errFrom: string): IAction<IErr> => ({
+	type: ERROR_HTTP,
+	payload: {
+		id: uuid(),
+		type: errFrom,
+		response: err
+	}
 });

@@ -5,7 +5,8 @@ export const STORIES_ADD = 'STORIES_ADD';
 
 export const SEARCH_SET_CURRENT = 'SEARCH_SET_CURRENT';
 
-export const HTTP_ERROR = 'HTTP_ERROR';
+export const ERROR_HTTP = 'ERROR_HTTP';
+export const ERROR_CLEAN = 'ERROR_CLEAN';
 
 export const TODO_ADD = 'TODO_ADD';
 export const TODO_REMOVE = 'TODO_REMOVE';

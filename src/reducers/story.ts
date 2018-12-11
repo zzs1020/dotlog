@@ -6,12 +6,14 @@ const INITIAL_STATE: IHit[] = [];
 const storyReducer = (state: IHit[] = INITIAL_STATE, action: IAction<IHit[]>) => {
 	switch (action.type) {
 		case STORIES_ADD:
-			return applyAddStories(action);
+			return applyAddStories(state, action);
 		default:
 			return state;
 	}
 };
 
-const applyAddStories = (action: IAction<IHit[]>) => action.payload;
+const applyAddStories = (state, action: IAction<IHit[]>) => {
+	return [...state, ...action.payload];
+};
 
 export default storyReducer;

@@ -2,6 +2,7 @@ import { ITodo } from './todo';
 import { INotification } from './notification';
 import { IHit } from './search-result';
 import { ISearchState } from './search-state';
+import { IErr } from './err';
 
 export interface IStoreState {
 	storyState: IHit[];
@@ -10,4 +11,5 @@ export interface IStoreState {
 	todoState: ITodo[];
 	todosFilterState: string;
 	notificationState: INotification[];
+	errState: IErr[];
 }

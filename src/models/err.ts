@@ -1,7 +1,8 @@
+import { AxiosError } from 'axios';
 export interface IErr {
 	id: string;
-	code: number;
 	type: string;
-	name: string;
-	msg: string;
+	name?: string;
+	msg?: string;
+	response?: AxiosError;
 }
