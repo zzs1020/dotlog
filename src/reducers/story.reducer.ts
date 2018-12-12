@@ -1,6 +1,6 @@
 import { STORIES_ADD } from '../constants/action-types';
-import { IAction } from '../models/action';
-import { IHit } from '../models/search-result';
+import { IAction } from '../models/action.model';
+import { IHit } from '../models/search-result.model';
 const INITIAL_STATE: IHit[] = [];
 
 const storyReducer = (state: IHit[] = INITIAL_STATE, action: IAction<IHit[]>) => {

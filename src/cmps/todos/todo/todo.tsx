@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import './todo.scss';
-import { ITodo } from '../../../models/todo';
-import { doToggleTodo, doSaveTodoName } from '../../../actions/todos';
+import { ITodo } from '../../../models/todo.model';
+import { doToggleTodo, doSaveTodoName } from '../../../actions/todo.action';
 import { connect } from 'react-redux';
 import { Spring } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

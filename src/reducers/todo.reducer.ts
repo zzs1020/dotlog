@@ -1,7 +1,7 @@
-import { ITodo } from '../models/todo';
+import { ITodo } from '../models/todo.model';
 import { TODO_ADD, TODO_TOGGLE, TODO_SET_NAME, TODO_REMOVE } from '../constants/action-types';
 import produce from 'immer';
-import { IAction } from '../models/action';
+import { IAction } from '../models/action.model';
 
 const INIT_STATE: ITodo[] = [];
 

@@ -1,6 +1,6 @@
 import { TODO_ADD, TODO_SET_FILTER, TODO_TOGGLE, TODO_SET_NAME, TODO_REMOVE } from '../constants/action-types';
-import { IHit } from '../models/search-result';
-import { ITodo } from '../models/todo';
+import { IHit } from '../models/search-result.model';
+import { ITodo } from '../models/todo.model';
 
 export const doSetFilter = (filter: string) => ({type: TODO_SET_FILTER, payload: filter});
 

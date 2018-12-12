@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from '../../shared/button/button';
 import { connect } from 'react-redux';
-import { doSetFilter } from '../../../actions/todos';
+import { doSetFilter } from '../../../actions/todo.action';
 import { TODO_SHOW_COMPLETED, TODO_SHOW_INCOMPLETE } from '../../../constants/action-types';
-import { IStoreState } from '../../../models/store-state';
+import { IStoreState } from '../../../models/store-state.model';
 
 type Props = {
 	currentFilter: string,

@@ -1,8 +1,8 @@
 import { all, takeEvery } from 'redux-saga/effects';
 import { NOTIFICATION_ERROR, STORIES_FETCH, TODO_ADD } from '../constants/action-types';
-import { handleFetchStories } from './story';
-import { handleAddTodo } from './todo';
-import { handleNotification } from './notification';
+import { handleFetchStories } from './story.saga';
+import { handleAddTodo } from './todo.saga';
+import { handleNotification } from './notification.saga';
 
 function* watchAll() {
 	yield all([

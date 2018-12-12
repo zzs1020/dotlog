@@ -1,6 +1,6 @@
 import { ERROR_HTTP, ERROR_CLEAN } from './../constants/action-types';
-import { IAction } from '../models/action';
-import { IErr } from '../models/err';
+import { IAction } from '../models/action.model';
+import { IErr } from '../models/err.model';
 
 const errReducer = (state: IErr[] = [], action) => {
 	switch (action.type) {

@@ -1,7 +1,7 @@
 import { NOTIFICATION_ERROR, NOTIFICATION_HIDE, TODO_ADD } from '../constants/action-types';
-import { INotification } from '../models/notification';
-import { IAction } from '../models/action';
-import { ITodo } from '../models/todo';
+import { INotification } from '../models/notification.model';
+import { IAction } from '../models/action.model';
+import { ITodo } from '../models/todo.model';
 import { MsgType } from '../constants/msg-type.enum';
 
 const notificationReducer = (state: INotification[] = [], action: IAction<ITodo | INotification | string>) => {

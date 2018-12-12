@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ISearchResult } from '../models/search-result';
+import { ISearchResult } from '../models/search-result.model';
 
 const HN_BASE_URL = 'https://hn.algolia.com/api/v1/search?query=';
 

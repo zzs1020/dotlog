@@ -1,6 +1,6 @@
-import { ISearchResult } from '../models/search-result';
-import { ISearchState } from '../models/search-state';
-import { IAction } from '../models/action';
+import { ISearchResult } from '../models/search-result.model';
+import { ISearchState } from '../models/search-state.model';
+import { IAction } from '../models/action.model';
 import { SEARCH_SET_CURRENT } from '../constants/action-types';
 
 export const doSetCurrentSearch = ({ query, page, nbPages }: ISearchResult): IAction<ISearchState> => {

@@ -1,6 +1,6 @@
-import { ISearchState } from '../models/search-state';
+import { ISearchState } from '../models/search-state.model';
 import { SEARCH_SET_CURRENT } from '../constants/action-types';
-import { IAction } from '../models/action';
+import { IAction } from '../models/action.model';
 
 const INIT_STATE = {
 	page: 0,

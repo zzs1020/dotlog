@@ -1,5 +1,5 @@
 import { STORY_ARCHIVE } from '../constants/action-types';
-import { IAction } from '../models/action';
+import { IAction } from '../models/action.model';
 
 const INITIAL_STATE = [];
 

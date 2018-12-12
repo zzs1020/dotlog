@@ -1,10 +1,10 @@
 import uuid from 'uuid/v4';
 import { AxiosError } from 'axios';
 import { STORIES_ADD, STORIES_FETCH, ERROR_HTTP } from '../constants/action-types';
-import { IHit } from '../models/search-result';
-import { IAction } from '../models/action';
-import { ICurrentSearch } from '../models/search-state';
-import { IErr } from '../models/err';
+import { IHit } from '../models/search-result.model';
+import { IAction } from '../models/action.model';
+import { ICurrentSearch } from '../models/search-state.model';
+import { IErr } from '../models/err.model';
 
 export const doAddStories = (hits: IHit[]) => {
 	// some hits are because finding keys on comments/authors, which may don't have a story

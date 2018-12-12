@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IStoreState } from '../../../models/store-state';
-import { ISearchState } from '../../../models/search-state';
-import { doFetchStories } from '../../../actions/story';
+import { IStoreState } from '../../../models/store-state.model';
+import { ISearchState } from '../../../models/search-state.model';
+import { doFetchStories } from '../../../actions/story.action';
 
 type Props = {
 	currentSearch: ISearchState,

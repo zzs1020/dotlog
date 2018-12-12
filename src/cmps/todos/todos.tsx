@@ -1,10 +1,10 @@
 import React, { Component, RefObject } from 'react';
 import Todo from './todo/todo';
 import './todos.scss';
-import { ITodo } from '../../models/todo';
+import { ITodo } from '../../models/todo.model';
 import { connect } from 'react-redux';
-import { IStoreState } from '../../models/store-state';
-import { getTodos } from '../../selectors/todos';
+import { IStoreState } from '../../models/store-state.model';
+import { getTodos } from '../../selectors/todos.selector';
 import TodosFilter from './filter/todos-filter';
 import { Spring } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

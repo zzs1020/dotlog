@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getReadableStories, getArchivedStories } from '../../../selectors/story';
-import { IStoreState } from '../../../models/store-state';
+import { getReadableStories, getArchivedStories } from '../../../selectors/story.selector';
+import { IStoreState } from '../../../models/store-state.model';
 import StoriesGrid from './stories-grid/stories-grid';
 import Button from '../../shared/button/button';
-import { IHit } from '../../../models/search-result';
-import { doFetchStories } from '../../../actions/story';
+import { IHit } from '../../../models/search-result.model';
+import { doFetchStories } from '../../../actions/story.action';
 import { STORIES_FETCH } from '../../../constants/action-types';
 import { doCleanError } from '../../../actions/err.action';
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import { INotification } from '../../../models/notification';
-import { IStoreState } from '../../../models/store-state';
+import { INotification } from '../../../models/notification.model';
+import { IStoreState } from '../../../models/store-state.model';
 import { connect } from 'react-redux';
-import { getNotifications } from '../../../selectors/notifications';
+import { getNotifications } from '../../../selectors/notifications.selector';
 import './notifications.scss';
 
 type Props = {

@@ -1,7 +1,7 @@
 import { call, put, all } from 'redux-saga/effects';
-import { doAddStories, doFetchError } from '../actions/story';
-import { fetchStories } from '../api/story';
-import { doSetCurrentSearch } from '../actions/search';
+import { doAddStories, doFetchError } from '../actions/story.action';
+import { fetchStories } from '../api/story.api';
+import { doSetCurrentSearch } from '../actions/search.action';
 import { STORIES_FETCH } from '../constants/action-types';
 
 function* handleFetchStories(action) {

@@ -1,5 +1,5 @@
 import { TODO_SET_FILTER, TODO_SHOW_INCOMPLETE } from './../constants/action-types';
-import { IAction } from '../models/action';
+import { IAction } from '../models/action.model';
 
 // currently only have to state incomplete or completed
 const TodosFilterReducer = (state: string = TODO_SHOW_INCOMPLETE, action: IAction<string>) => {

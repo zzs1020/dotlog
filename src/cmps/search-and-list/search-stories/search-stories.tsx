@@ -1,5 +1,5 @@
 import React from 'react';
-import { doFetchStories } from '../../../actions/story';
+import { doFetchStories } from '../../../actions/story.action';
 import { connect } from 'react-redux';
 import Button from '../../shared/button/button';
 
