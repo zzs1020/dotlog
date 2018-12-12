@@ -16,16 +16,16 @@ const Pagination = ({ currentSearch, onFetchStories }: Props) => {
 	return (
 		<nav>
 			<ul className="my-pagination">
-				<li className={`my-page-item fa-rotate-90 ${page === 0 ? 'disabled' : ''}`} onClick={() => onFetchStories(query, page - 1)}>
+				<li className={`pg-item fa-rotate-90 ${page === 0 ? 'disabled' : ''}`} onClick={() => onFetchStories(query, page - 1)}>
 					&laquo;
 				</li>
 				{/** Array(number) only creates a new empty slots with length set up, no actual undefined value inserted */}
 				{limitedPages.map(i =>
-					<li key={i} className={`my-page-item ${page === i - 1 ? 'active' : ''}`} onClick={() => onFetchStories(query, i)}>
+					<li key={i} className={`pg-item ${page === i - 1 ? 'active' : ''}`} onClick={() => onFetchStories(query, i)}>
 						{i}
 					</li>
 				)}
-				<li className={`my-page-item fa-rotate-90 ${page === totalPages - 1 ? 'disabled' : ''}`} onClick={() => onFetchStories(query, page + 1)}>
+				<li className={`pg-item fa-rotate-90 ${page === totalPages - 1 ? 'disabled' : ''}`} onClick={() => onFetchStories(query, page + 1)}>
 					&raquo;
 				</li>
 			</ul>

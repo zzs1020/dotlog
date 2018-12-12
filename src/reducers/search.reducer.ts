@@ -11,10 +11,20 @@ const INIT_STATE = {
 const searchReducer = (state: ISearchState = INIT_STATE, action: IAction<ISearchState>) => {
 	switch (action.type) {
 		case SEARCH_SET_CURRENT:
-			return action.payload;
+			return applySetCurrentSearch(state, action);
 		default:
 			return state;
 	}
+};
+
+const applySetCurrentSearch = (state, action) => {
+	 // maintain total pages and query if unchanged
+	const newState = {
+		page: action.payload.page,
+		totalPages: action.payload.totalPages || state.totalPages,
+		query: action.payload.query || state.query
+	};
+	return newState;
 };
 
 export default searchReducer;

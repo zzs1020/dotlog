@@ -33,6 +33,7 @@ export interface IHighlightResult {
 }
 
 export interface IHit {
+	pageHeadNumber?: number; // indicates if this is the beginning of a page, and which page it belongs to
 	created_at: Date;
 	title: string;
 	url: string;

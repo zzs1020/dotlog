@@ -13,6 +13,9 @@ const storyReducer = (state: IHit[] = INITIAL_STATE, action: IAction<IHit[]>) =>
 };
 
 const applyAddStories = (state, action: IAction<IHit[]>) => {
+	if (action.payload.length === 0) {
+		return state;
+	}
 	return [...state, ...action.payload];
 };
 

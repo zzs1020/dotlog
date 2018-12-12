@@ -8,11 +8,13 @@ import { IHit } from '../../../models/search-result.model';
 import { doFetchStories } from '../../../actions/story.action';
 import { STORIES_FETCH } from '../../../constants/action-types';
 import { doCleanError } from '../../../actions/err.action';
+import { doSetCurrentSearch } from '../../../actions/search.action';
 
 type Props = {
 	store: IStoreState,
 	onFetchStories: (query, page) => void,
-	cleanErr: (id) => void
+	cleanErr: (id) => void,
+	setCurrentPageNumber: (page) => void
 };
 
 type State = {
@@ -56,9 +58,11 @@ class Stories extends React.Component<Props, State> {
 		}
 	}
 
-	// moniters where user is and starting fetching data at some point
+	// monitors where user is and starting fetching data at some point
 	infinityScroll() {
-		const currentScrollPosition = this.getScrollPercentage();
+		// used to dynamically change pagination's active page
+		this.changePageNumber(document.querySelectorAll('.is-page-head'));
+		const currentScrollPosition = this.getScrollBarPercentage();
 		if (currentScrollPosition > 0.8 && currentScrollPosition < 0.82) { // one scroll can fire multiple event, so give it a threshold
 			const { query, page } = this.props.store.searchState;
 			const nextPage = page + 1;
@@ -70,7 +74,18 @@ class Stories extends React.Component<Props, State> {
 		}
 	}
 
-	getScrollPercentage() {
+	changePageNumber(nodes: NodeListOf<HTMLDivElement>) {
+		for (let i = 0; i < nodes.length; i++) {
+			const distanceBetweenEleAndViewTop = nodes[i].offsetTop - window.scrollY;
+			if (distanceBetweenEleAndViewTop < 100 && distanceBetweenEleAndViewTop > 0) { // at around 10% of page but haven't become invisible
+				this.props.setCurrentPageNumber(i);
+				break;
+			}
+		}
+	}
+
+	getScrollBarPercentage() {
+		// scrolled length / (total height - visible height) aka scrollable length
 		return window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
 	}
 
@@ -103,7 +118,8 @@ const mapStateToProps = (state: IStoreState) => ({
 
 const mapDispatchToProps = dispatch => ({
 	onFetchStories: (query, page) => dispatch(doFetchStories(query, page)),
-	cleanErr: (errId) => dispatch(doCleanError(errId))
+	cleanErr: (errId) => dispatch(doCleanError(errId)),
+	setCurrentPageNumber: (page) => dispatch(doSetCurrentSearch(page))
 });
 
 export default connect(

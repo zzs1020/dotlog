@@ -29,4 +29,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## My Notes
 
-1. Redefined Action to Action<T>, where T is payload type. Because same action can be used in other reducers
+1. Redefined Action to IAction<T>, where T is payload type. Because same action can be used in other reducers
+
+### next idea
+assign an id to each page head, id should be starting from page_head_1, only querySelector(prevPage, nextPage) current page's prev and next
+should record maxCachedPage,

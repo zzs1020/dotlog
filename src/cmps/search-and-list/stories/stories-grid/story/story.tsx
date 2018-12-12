@@ -18,10 +18,10 @@ type Props = {
 };
 
 const Story = ({ story, todos, onArchive, onBookmark }: Props) => {
-	const { title, url, author, num_comments, created_at, objectID } = story;
+	const { title, url, author, num_comments, created_at, objectID, pageHeadNumber } = story;
 
 	return (
-		<div className="row my-1">
+		<div className={`row my-1 ${pageHeadNumber ? 'is-page-head' : ''}`}>
 			<div className="col-10">
 				<a target="_blank" href={url} title={url}>{title}</a>
 				<div className="row text-muted">

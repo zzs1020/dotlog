@@ -11,7 +11,7 @@ export const doAddStories = (hits: IHit[]) => {
 	const stories = hits.filter(hit => hit.title && hit.url);
 	return {
 		type: STORIES_ADD,
-		payload: stories
+		payload: addPageHead(stories)
 	};
 };
 
@@ -31,3 +31,13 @@ export const doFetchError = (err: AxiosError, errFrom: string): IAction<IErr> =>
 		response: err
 	}
 });
+
+// everytime fetches a new page, add a flag to first element of this page, so i can monitor scroll status later
+// here used IIFE since I need to record which page it is
+const addPageHead = (() => {
+	let counter = 1;
+	return (hits: IHit[]) => {
+		const head = Object.assign({pageHeadNumber: counter++}, hits[0]);
+		return [head, ...hits.slice(1)];
+	};
+})();
