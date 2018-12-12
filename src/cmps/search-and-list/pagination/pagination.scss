@@ -1,0 +1,47 @@
+$border-default: 1px solid lightgrey;
+
+.my-pagination {
+  list-style: none;
+  position: fixed;
+  top: 10%;
+  right: 5%;
+
+  .my-page-item {
+    width: 40px;
+    height: 40px;
+    border: $border-default;
+    border-top: none;
+    background-color: white;
+    cursor: pointer;
+    color: deepskyblue;
+    padding-top: 2px;
+    text-align: center;
+
+    &.active {
+      color: white;
+      background-color: deepskyblue;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      color: lightgrey;
+      background-color: #f5f5f5;
+    }
+
+    &:first-child {
+      border-top: $border-default;
+      border-radius: 5px 0 0 5px;
+    }
+
+    &:last-child {
+      border-top: $border-default;
+      border-left: none;
+      border-radius: 0 5px 5px 0;
+    }
+
+    &:hover {
+      color: deepskyblue;
+      background-color: #f5f5f5;
+    }
+  }
+}
