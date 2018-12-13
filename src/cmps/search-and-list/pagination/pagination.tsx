@@ -12,20 +12,20 @@ type Props = {
 
 const Pagination = ({ currentSearch, onFetchStories }: Props) => {
 	const { page, query, totalPages } = currentSearch;
-	const limitedPages = getLimitedPages(page + 1, totalPages);
+	const limitedPages = getLimitedPages(page, totalPages);
 	return (
 		<nav>
 			<ul className="my-pagination">
-				<li className={`pg-item fa-rotate-90 ${page === 0 ? 'disabled' : ''}`} onClick={() => onFetchStories(query, page - 1)}>
+				<li className={`pg-item fa-rotate-90 ${page === 1 ? 'disabled' : ''}`} onClick={() => onFetchStories(query, page - 1)}>
 					&laquo;
 				</li>
 				{/** Array(number) only creates a new empty slots with length set up, no actual undefined value inserted */}
 				{limitedPages.map(i =>
-					<li key={i} className={`pg-item ${page === i - 1 ? 'active' : ''}`} onClick={() => onFetchStories(query, i)}>
+					<li key={i} className={`pg-item ${page === i ? 'active' : ''}`} onClick={() => onFetchStories(query, i)}>
 						{i}
 					</li>
 				)}
-				<li className={`pg-item fa-rotate-90 ${page === totalPages - 1 ? 'disabled' : ''}`} onClick={() => onFetchStories(query, page + 1)}>
+				<li className={`pg-item fa-rotate-90 ${page === totalPages ? 'disabled' : ''}`} onClick={() => onFetchStories(query, page + 1)}>
 					&raquo;
 				</li>
 			</ul>

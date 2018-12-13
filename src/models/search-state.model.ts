@@ -4,5 +4,5 @@ export interface ISearchState extends ICurrentSearch {
 
 export interface ICurrentSearch {
 	query: string;
-	page: number;
+	page: number; // start from 1
 }

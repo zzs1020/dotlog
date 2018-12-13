@@ -46,7 +46,7 @@ class Stories extends React.Component<Props, State> {
 
 	componentDidUpdate(prevProps) {
 		if (this.props.store.storyState !== prevProps.store.storyState) {
-			// everytime got new stories, show readable as default
+			// every time got new stories, show readable as default
 			this.showReadable();
 		} else if (this.props.store.errState !== prevProps.store.errState) {
 			// if http err happens, reset fetchingPage indicate user can fetch that page again
@@ -58,15 +58,17 @@ class Stories extends React.Component<Props, State> {
 		}
 	}
 
-	// monitors where user is and starting fetching data at some point
+	// monitors where user is and do stuff
 	infinityScroll() {
+		const { query, page } = this.props.store.searchState;
 		// used to dynamically change pagination's active page
-		this.changePageNumber(document.querySelectorAll('.is-page-head'));
+		this.changePageNumber(page);
+
+		// starting fetching data at some point
 		const currentScrollPosition = this.getScrollBarPercentage();
 		if (currentScrollPosition > 0.8 && currentScrollPosition < 0.82) { // one scroll can fire multiple event, so give it a threshold
-			const { query, page } = this.props.store.searchState;
 			const nextPage = page + 1;
-			// if next page is alraedy been fetching, don't call it again
+			// if next page is already been fetching, don't call it again
 			if (this.state.fetchingPage !== nextPage) {
 				this.props.onFetchStories(query, nextPage);
 				this.setState({ fetchingPage: nextPage });
@@ -74,11 +76,18 @@ class Stories extends React.Component<Props, State> {
 		}
 	}
 
-	changePageNumber(nodes: NodeListOf<HTMLDivElement>) {
+	changePageNumber(curPage: number) {
+		// here only query prev and next anchor because scroll can't skip numbers
+		const prevPageNum = curPage - 1;
+		const nextPageNum = curPage + 1;
+		const nodes: NodeListOf<HTMLDivElement> = document.querySelectorAll(`#page-head${prevPageNum}, #page-head${nextPageNum}`);
+
+		// nodes could be 0, 1, 2 node
 		for (let i = 0; i < nodes.length; i++) {
 			const distanceBetweenEleAndViewTop = nodes[i].offsetTop - window.scrollY;
-			if (distanceBetweenEleAndViewTop < 100 && distanceBetweenEleAndViewTop > 0) { // at around 10% of page but haven't become invisible
-				this.props.setCurrentPageNumber(i);
+			// at around 10% of page but haven't become invisible
+			if (distanceBetweenEleAndViewTop < 100 && distanceBetweenEleAndViewTop > 0) {
+				this.props.setCurrentPageNumber(parseInt(nodes[i].id.slice(9), 0));
 				break;
 			}
 		}

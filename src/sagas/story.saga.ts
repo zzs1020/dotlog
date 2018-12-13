@@ -11,7 +11,8 @@ function* handleFetchStories(action) {
 		// all() make them parallel
 		yield all([
 			put(doAddStories(result.hits)),
-			put(doSetCurrentSearch(result.page, result.query, result.nbPages))
+			// api's curPage start from 0
+			put(doSetCurrentSearch(result.page + 1, result.query, result.nbPages))
 		]);
 	} catch (err) {
 		yield put(doFetchError(err, STORIES_FETCH));

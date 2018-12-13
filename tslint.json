@@ -16,6 +16,7 @@
         "interface-name": [true, "always-prefix"],
         "no-console": true,
         "no-empty": false,
+        "prefer-for-of": false,
         "max-classes-per-file": [true, 1, "exclude-class-expressions"],
         "no-angle-bracket-type-assertion": false,
         "whitespace": [true,

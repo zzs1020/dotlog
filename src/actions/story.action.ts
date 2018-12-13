@@ -15,11 +15,11 @@ export const doAddStories = (hits: IHit[]) => {
 	};
 };
 
-export const doFetchStories = (query: string, page: number = 0): IAction<ICurrentSearch> => ({
+export const doFetchStories = (query: string, page: number = 1): IAction<ICurrentSearch> => ({
 	type: STORIES_FETCH,
 	payload: {
 		query,
-		page
+		page: page - 1
 	}
 });
 
