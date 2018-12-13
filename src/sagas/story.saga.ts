@@ -11,8 +11,9 @@ function* handleFetchStories(action) {
 		// all() make them parallel
 		yield all([
 			put(doAddStories(result.hits)),
-			// api's curPage start from 0
-			put(doSetCurrentSearch(result.page + 1, result.query, result.nbPages))
+			// api's curPage start from 0, here don't set new fetched page as current page (except 1st call)
+			// since user may not want to flip to next page (this also to solve the pagination and infinity scroll's race issue)
+			put(doSetCurrentSearch(page === 0 ? 1 : null, result.query, result.nbPages))
 		]);
 	} catch (err) {
 		yield put(doFetchError(err, STORIES_FETCH));

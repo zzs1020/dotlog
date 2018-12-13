@@ -9,6 +9,8 @@ import { doFetchStories } from '../../../actions/story.action';
 import { STORIES_FETCH } from '../../../constants/action-types';
 import { doCleanError } from '../../../actions/err.action';
 import { doSetCurrentSearch } from '../../../actions/search.action';
+import { PAGE_HEAD } from '../../../constants/often-used-string';
+import { isSmallDevice } from '../../../constants/util';
 
 type Props = {
 	store: IStoreState,
@@ -62,7 +64,9 @@ class Stories extends React.Component<Props, State> {
 	infinityScroll() {
 		const { query, page } = this.props.store.searchState;
 		// used to dynamically change pagination's active page
-		this.changePageNumber(page);
+		if (!isSmallDevice()) {
+			this.changePageNumber(page);
+		}
 
 		// starting fetching data at some point
 		const currentScrollPosition = this.getScrollBarPercentage();
@@ -80,7 +84,7 @@ class Stories extends React.Component<Props, State> {
 		// here only query prev and next anchor because scroll can't skip numbers
 		const prevPageNum = curPage - 1;
 		const nextPageNum = curPage + 1;
-		const nodes: NodeListOf<HTMLDivElement> = document.querySelectorAll(`#page-head${prevPageNum}, #page-head${nextPageNum}`);
+		const nodes: NodeListOf<HTMLDivElement> = document.querySelectorAll(`#${PAGE_HEAD}${prevPageNum}, #${PAGE_HEAD}${nextPageNum}`);
 
 		// nodes could be 0, 1, 2 node
 		for (let i = 0; i < nodes.length; i++) {

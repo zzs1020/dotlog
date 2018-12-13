@@ -5,7 +5,8 @@ import { IAction } from '../models/action.model';
 const INIT_STATE = {
 	page: 0,
 	totalPages: 0,
-	query: ''
+	query: '',
+	maxCachedPage: 0
 };
 
 const searchReducer = (state: ISearchState = INIT_STATE, action: IAction<ISearchState>) => {
@@ -17,12 +18,13 @@ const searchReducer = (state: ISearchState = INIT_STATE, action: IAction<ISearch
 	}
 };
 
-const applySetCurrentSearch = (state, action) => {
-	 // maintain total pages and query if unchanged
+// maintain original value if unchanged
+const applySetCurrentSearch = (state, action): ISearchState => {
 	const newState = {
-		page: action.payload.page,
-		totalPages: action.payload.totalPages || state.totalPages,
-		query: action.payload.query || state.query
+		page: action.payload.page || state.page,
+		maxCachedPage: state.maxCachedPage < action.payload.page ? action.payload.page : state.maxCachedPage,
+		query: action.payload.query || state.query,
+		totalPages: action.payload.totalPages || state.totalPages
 	};
 	return newState;
 };

@@ -9,6 +9,7 @@ import { doAddTodo, doRemoveTodo } from '../../../../../actions/todo.action';
 import { IStoreState } from '../../../../../models/store-state.model';
 import { getTodos } from '../../../../../selectors/todos.selector';
 import { ITodo } from '../../../../../models/todo.model';
+import { PAGE_HEAD } from '../../../../../constants/often-used-string';
 
 type Props = {
 	story: IHit,
@@ -21,7 +22,7 @@ const Story = ({ story, todos, onArchive, onBookmark }: Props) => {
 	const { title, url, author, num_comments, created_at, objectID, pageHeadNumber } = story;
 
 	return (
-		<div className={`row my-1`} id={pageHeadNumber ? 'page-head' + pageHeadNumber : ''}>
+		<div className={`row my-1`} id={pageHeadNumber ? PAGE_HEAD + pageHeadNumber : ''}>
 			<div className="col-10">
 				<a target="_blank" href={url} title={url}>{title}</a>
 				<div className="row text-muted">

@@ -2,6 +2,7 @@ import React from 'react';
 import Stories from './stories/stories';
 import SearchStories from './search-stories/search-stories';
 import Pagination from './pagination/pagination';
+import { isSmallDevice } from '../../constants/util';
 
 const SearchAndList = () => (
 	<>
@@ -9,7 +10,7 @@ const SearchAndList = () => (
 			<SearchStories />
 		</div>
 		<Stories />
-		<Pagination />
+		{isSmallDevice() ? null : <Pagination />}
 	</>
 );
 
