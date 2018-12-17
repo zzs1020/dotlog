@@ -3,3 +3,12 @@
 * {
     font-size: 1.1rem;
 }
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    height: 100%;
+}

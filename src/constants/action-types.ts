@@ -5,6 +5,8 @@ export const STORIES_ADD = 'STORIES_ADD';
 
 export const SEARCH_SET_CURRENT = 'SEARCH_SET_CURRENT';
 
+export const LOADER_ADD = 'LOADER_ADD';
+
 export const ERROR_HTTP = 'ERROR_HTTP';
 export const ERROR_CLEAN = 'ERROR_CLEAN';
 

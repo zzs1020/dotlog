@@ -1,10 +1,12 @@
+@import '../../../styles/variables.scss';
+
 .notifications {
   position: fixed;
   top: 0;
   right: 0;
   width: 200px;
   background: white;
-  z-index: 2;
+  z-index: $zindex-notification;
 
   .notification {
     position: relative;

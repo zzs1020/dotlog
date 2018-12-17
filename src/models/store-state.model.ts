@@ -3,6 +3,7 @@ import { INotification } from './notification.model';
 import { IHit } from './search-result.model';
 import { ISearchState } from './search-state.model';
 import { IErr } from './err.model';
+import { ISingleLoader } from './single-loader.model';
 
 export interface IStoreState {
 	storyState: IHit[];
@@ -12,4 +13,5 @@ export interface IStoreState {
 	todosFilterState: string;
 	notificationState: INotification[];
 	errState: IErr[];
+	loaderState: ISingleLoader[];
 }

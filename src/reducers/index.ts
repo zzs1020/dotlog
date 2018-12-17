@@ -6,6 +6,7 @@ import TodosFilterReducer from './todos-filter.reducer';
 import notificationReducer from './notification.reducer';
 import searchReducer from './search.reducer';
 import errReducer from './err.reducer';
+import loaderReducer from './loader.reducer';
 
 const rootReducer = combineReducers({
 	storyState: storyReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
 	todoState: todoReducer,
 	todosFilterState: TodosFilterReducer,
 	notificationState: notificationReducer,
-	errState: errReducer
+	errState: errReducer,
+	loaderState: loaderReducer
 });
 
 export default rootReducer;
