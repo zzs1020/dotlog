@@ -9,7 +9,7 @@ type Props = {
 };
 
 type State = {
-	insertedElements: any // {elId: times} different api may add loader to same element
+	loaderEls: any // {parentElId: loaderContainerHTML}
 };
 /**
  * To use Loader, put it once in somewhere in the app, it will work like a service to monitor loader status from redux
@@ -20,8 +20,11 @@ class Loader extends React.Component<Props, State> {
 		super(props);
 
 		this.state = {
-			insertedElements: {}
+			loaderEls: {}
 		};
+
+		this.checkAndAddLoader = this.checkAndAddLoader.bind(this);
+		this.checkAndRemoveLoader = this.checkAndRemoveLoader.bind(this);
 	}
 
 	// monitors status
@@ -29,53 +32,59 @@ class Loader extends React.Component<Props, State> {
 		if (prevProps.loaders !== this.props.loaders) {
 			// a loader status get deleted
 			if (prevProps.loaders.length > this.props.loaders.length) {
-				// props's inner older won't change because I deleted in order
-				for (let i = 0; i < prevProps.loaders.length; i++) {
-					if (this.props.loaders[i] !== prevProps.loaders[i]) {
-						// find the missing loader, use it to check if there are any other loader using same element
-						const loaderOnSameElement = this.props.loaders.find(loader => loader.insertedElementId === prevProps.loaders[i].insertedElementId);
-						if (!loaderOnSameElement) {
-
-						}
-						break;
-					}
-				}
-			} else { // a loader status added TODO: can = happen?, will redux fire once if three event come out?
-				this.props.loaders.forEach(loader => {
-					const loaderDupTimes = this.state.insertedElements[loader.insertedElementId];
-					// if the el already attached a loader, remeber times so we know when to remove this loader (to prevent loader flash issue)
-					if (loaderDupTimes) {
-						this.setState(prevState => {
-							return {
-								insertedElements: Object.assign({}, prevState.insertedElements, { [loader.insertedElementId]: loaderDupTimes + 1 })
-							};
-						});
-					} else {
-						// new el to attach a loader
-						this.insertLoader(loader);
-						this.setState(prevState => {
-							return {
-								insertedElements: { ...prevState.insertedElements, [loader.insertedElementId]: 1 }
-							};
-						});
-					}
-				});
+				this.checkAndRemoveLoader(prevProps.loaders);
+			} else { // a loader status added
+				this.checkAndAddLoader(prevProps.loaders);
 			}
 
 		}
 	}
 
-	insertLoader(loader: ISingleLoader) {
+	checkAndRemoveLoader(prevLoaders) {
+		// props's inner older won't change because I deleted in order
+		for (let i = 0; i < prevLoaders.length; i++) {
+			if (this.props.loaders[i] !== prevLoaders[i]) {
+				// found the missing loader, use it to check if there are any other loader using same element
+				const removedLoaderId = prevLoaders[i].insertedElementId;
+				const loaderOnSameElement = this.props.loaders.find(loader => loader.insertedElementId === removedLoaderId);
+				if (!loaderOnSameElement) {
+					const parent = document.getElementById(removedLoaderId);
+					parent.removeChild(this.state.loaderEls[removedLoaderId]);
+					this.setState(prevState => (
+						{
+							loaderEls: Object.assign({}, prevState.loaderEls, {[removedLoaderId]: undefined})
+						}
+					));
+				}
+				break;
+			}
+		}
+	}
+
+	checkAndAddLoader(prevLoaders) {
+		// new loader status is always added at the end of array
+		const newAddedLoader = this.props.loaders[this.props.loaders.length - 1];
+		const existing = prevLoaders.some(loader => loader.insertedElementId === newAddedLoader.insertedElementId);
+
+		if (!existing) {
+			const loaderEl = this.insertLoader(newAddedLoader);
+			this.setState(prevState => (
+				{
+					loaderEls: {...prevState.loaderEls, [newAddedLoader.insertedElementId]: loaderEl}
+				}
+			));
+		}
+	}
+
+	insertLoader(loader: ISingleLoader): HTMLElement {
 		const parent = document.getElementById(loader.insertedElementId);
 		const loaderContainer = document.createElement('div');
 		loaderContainer.className = 'loader-container';
-		parent.appendChild(loaderContainer);
+		return parent.appendChild(loaderContainer); // will return a ref of loader container
 	}
 
 	// Loader component basically a service to monitor loaders' status and operate DOM, so itself doesn't need UI
-	render() {
-		return null;
-	}
+	render() { return null; }
 }
 
 const mapStateToProps = (state: IStoreState) => ({

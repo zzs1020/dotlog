@@ -2,7 +2,6 @@ import React from 'react';
 import { doFetchStories } from '../../../actions/story.action';
 import { connect } from 'react-redux';
 import Button from '../../shared/button/button';
-import { doAddLoader } from '../../../actions/loader.action';
 
 type Props = {
 	onFetchStories: (q: string) => void
@@ -51,7 +50,6 @@ class SearchStories extends React.Component<Props, State> {
 
 const mapDispatchToProps = dispatch => ({
 	onFetchStories: query => {
-		dispatch(doAddLoader('storiesGrid'));
 		dispatch(doFetchStories(query));
 	}
 });

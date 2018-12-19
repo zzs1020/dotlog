@@ -18,8 +18,8 @@ const applyAddLoader = (state: ISingleLoader[], action: IAction<ISingleLoader>) 
 };
 
 const applyRemoveLoader = (state: ISingleLoader[], action: IAction<string>) => {
-	const firstOccurence = state.find(loader => loader.insertedElementId === action.payload);
-	return state.filter(loader => loader.id === firstOccurence.id);
+	const firstOccurrence = state.find(loader => loader.insertedElementId === action.payload);
+	return state.filter(loader => loader.id !== firstOccurrence.id);
 };
 
 export default loaderReducer;
