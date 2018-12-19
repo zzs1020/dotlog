@@ -42,7 +42,7 @@ class SearchStories extends React.Component<Props, State> {
 		return (
 			<form onSubmit={this.onSubmit} className="form-inline">
 				<input type="text" className="form-control" value={this.state.query} onChange={this.onChange} />
-				<Button cls="primary" type="submit">Search</Button>
+				<Button id="searchBtn" cls="primary" type="submit">Search</Button>
 			</form>
 		);
 	}
