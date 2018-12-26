@@ -6,7 +6,6 @@ import { STORIES_FETCH } from '../constants/action-types';
 import { doAddLoader, doRemoveLoader } from '../actions/loader.action';
 
 function* handleFetchStories(action) {
-	// yield put(doAddLoader('searchBtn'));
 	yield put(doAddLoader('storiesGrid'));
 
 	try {

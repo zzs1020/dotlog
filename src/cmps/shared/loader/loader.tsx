@@ -23,60 +23,117 @@ class Loader extends React.Component<Props, State> {
 			loaderEls: {}
 		};
 
-		this.checkAndAddLoader = this.checkAndAddLoader.bind(this);
-		this.checkAndRemoveLoader = this.checkAndRemoveLoader.bind(this);
+		this.checkAndAddLoaderEls = this.checkAndAddLoaderEls.bind(this);
+		this.checkAndRemoveLoaderEls = this.checkAndRemoveLoaderEls.bind(this);
 	}
 
 	// monitors status
 	componentDidUpdate(prevProps) {
 		if (prevProps.loaders !== this.props.loaders) {
-			// a loader status get deleted
-			if (prevProps.loaders.length > this.props.loaders.length) {
-				this.checkAndRemoveLoader(prevProps.loaders);
-			} else { // a loader status added
-				this.checkAndAddLoader(prevProps.loaders);
-			}
-
+			const { removedLoaders, newAddedLoaders } = this.getChangedLoadersStatus(prevProps.loaders, this.props.loaders);
+			// removing must happens after adding to prevent flicker
+			this.checkAndAddLoaderEls(prevProps.loaders, newAddedLoaders);
+			this.checkAndRemoveLoaderEls(removedLoaders);
 		}
 	}
 
-	checkAndRemoveLoader(prevLoaders) {
-		// props's inner older won't change because I deleted in order
-		for (let i = 0; i < prevLoaders.length; i++) {
-			if (this.props.loaders[i] !== prevLoaders[i]) {
-				// found the missing loader, use it to check if there are any other loader using same element
-				const removedLoaderId = prevLoaders[i].insertedElementId;
-				const loaderOnSameElement = this.props.loaders.find(loader => loader.insertedElementId === removedLoaderId);
-				if (!loaderOnSameElement) {
-					const parent = document.getElementById(removedLoaderId);
-					parent.removeChild(this.state.loaderEls[removedLoaderId]);
-					this.setState(prevState => (
-						{
-							loaderEls: Object.assign({}, prevState.loaderEls, {[removedLoaderId]: undefined})
-						}
-					));
+	/**
+	 * since redux doesn't garantee component will get all state changes, we have to compare it ourselves
+	 * prev = [a,b,c,d,f], curr = [a,e,g] cause
+	 * common = [a], removed = [b,c,d,f], newAdded = [e,g]
+	 */
+	getChangedLoadersStatus(prev, current): { removedLoaders: ISingleLoader[], newAddedLoaders: ISingleLoader[] } {
+		let arr1;
+		let arr2;
+		// when current arr longer than prev, following loop works, for making other case working, switch 2 arrs
+		if (prev.length > current.length) {
+			arr1 = prev;
+			arr2 = current;
+		} else {
+			arr1 = current;
+			arr2 = prev;
+		}
+		let addedToCommon = false; // reset on each comparison round beginning, will be used on end of each round
+		const common = []; // temp arr to record those common(unchanged) loaders
+		const removedLoadersSet = new Set(); // use a Set to record removed loaders, since we need to repeatly add them
+		const newAddedLoaders = [];
+
+		for (let i = 0; i < arr1.length; i++) {
+			addedToCommon = false;
+			for (let j = 0; j < arr2.length; j++) {
+				// if already added to common list, skip
+				if (!common.includes(arr2[j])) {
+					if (arr1[i] === arr2[j]) {
+						common.push(arr2[j]);
+						// take out the element that assumed 'removed' at last round
+						removedLoadersSet.delete(arr2[j]);
+						// found common, go to next round
+						addedToCommon = true;
+						break;
+					} else {
+						// if not equal, then assume it's removed
+						removedLoadersSet.add(arr2[j]);
+					}
 				}
-				break;
+			}
+			// if looped all prev loaders and can't find same loader, then this loader must be new added
+			if (!addedToCommon) {
+				newAddedLoaders.push(arr1[i]);
 			}
 		}
-	}
 
-	checkAndAddLoader(prevLoaders) {
-		// new loader status is always added at the end of array
-		const newAddedLoader = this.props.loaders[this.props.loaders.length - 1];
-		const existing = prevLoaders.some(loader => loader.insertedElementId === newAddedLoader.insertedElementId);
-
-		if (!existing) {
-			const loaderEl = this.insertLoader(newAddedLoader);
-			this.setState(prevState => (
-				{
-					loaderEls: {...prevState.loaderEls, [newAddedLoader.insertedElementId]: loaderEl}
-				}
-			));
+		// the result is reversed if prev > current
+		if (prev.length < current.length) {
+			return {
+				removedLoaders: [...removedLoadersSet],
+				newAddedLoaders
+			};
+		} else {
+			return {
+				removedLoaders: newAddedLoaders,
+				newAddedLoaders: [...removedLoadersSet]
+			};
 		}
 	}
 
-	insertLoader(loader: ISingleLoader): HTMLElement {
+	// use loader state and local element state to remove loader element
+	checkAndRemoveLoaderEls(removedLoaders) {
+		// check all removed states, if the loader el we going to remove is still existing on current loaders list, then don't remove this ele
+		removedLoaders.forEach(removedLoader => {
+			const insertedPos = removedLoader.insertedElementId;
+			const loaderOnSameElement = this.props.loaders.find(loader => loader.insertedElementId === insertedPos);
+			if (!loaderOnSameElement) {
+				const parentEl = document.getElementById(insertedPos);
+				parentEl.removeChild(this.state.loaderEls[insertedPos]);
+				this.setState(prevState => (
+					{
+						loaderEls: Object.assign({}, prevState.loaderEls, { [insertedPos]: undefined })
+					}
+				));
+			}
+		});
+	}
+
+	// use loader states to add real Html elements
+	checkAndAddLoaderEls(prevLoaders, newAddedLoaders) {
+		// check all new loader state, if already have a loader ele associated, do nothing, otherwise create it
+		newAddedLoaders.forEach(newAddedLoader => {
+			const existing = prevLoaders.some(loader => loader.insertedElementId === newAddedLoader.insertedElementId);
+
+			if (!existing) {
+				// set up html and record this element in case to remove
+				const loaderEl = this.insertLoaderEl(newAddedLoader);
+				this.setState(prevState => (
+					{
+						loaderEls: { ...prevState.loaderEls, [newAddedLoader.insertedElementId]: loaderEl }
+					}
+				));
+			}
+		});
+	}
+
+	// create DOM element
+	insertLoaderEl(loader: ISingleLoader): HTMLElement {
 		const parent = document.getElementById(loader.insertedElementId);
 		const loaderContainer = document.createElement('div');
 		loaderContainer.className = 'loader-container';
