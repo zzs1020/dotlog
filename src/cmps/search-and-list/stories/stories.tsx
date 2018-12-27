@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getReadableStories, getArchivedStories } from '../../../selectors/story.selector';
+import { getReadableStories } from '../../../selectors/story.selector';
 import { IStoreState } from '../../../models/store-state.model';
 import StoriesGrid from './stories-grid/stories-grid';
-import Button from '../../shared/button/button';
 import { IHit } from '../../../models/search-result.model';
 import { doFetchStories } from '../../../actions/story.action';
 import { STORIES_FETCH } from '../../../constants/action-types';
@@ -33,7 +32,6 @@ class Stories extends React.Component<Props, State> {
 			fetchingPage: 0 // is not fetching
 		};
 
-		this.showArchived = this.showArchived.bind(this);
 		this.showReadable = this.showReadable.bind(this);
 		this.infinityScroll = this.infinityScroll.bind(this);
 	}
@@ -102,12 +100,6 @@ class Stories extends React.Component<Props, State> {
 		return window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
 	}
 
-	showArchived() {
-		this.setState({
-			showingStories: getArchivedStories(this.props.store)
-		});
-	}
-
 	showReadable() {
 		this.setState({
 			showingStories: getReadableStories(this.props.store)
@@ -117,8 +109,6 @@ class Stories extends React.Component<Props, State> {
 	render() {
 		return (
 			<>
-				<Button onClick={this.showArchived} cls="secondary">Show Archived</Button>
-				<Button onClick={this.showReadable} cls="secondary">Show Readable</Button>
 				<StoriesGrid stories={this.state.showingStories} />
 			</>
 		);

@@ -32,7 +32,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 1. Redefined Action to IAction<T>, where T is payload type. Because same action can be used in other reducers
 2. react-redux's connect won't inform component for every store change (https://github.com/reduxjs/react-redux/issues/1105#issuecomment-445365827)
 
-### next idea
-same serch append to list issue
-only one addLoader event carry out issue
-atop assuming component will receive every store update
+### next idea/issues

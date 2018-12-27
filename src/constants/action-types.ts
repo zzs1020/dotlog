@@ -1,7 +1,8 @@
 export const STORY_ARCHIVE = 'STORY_ARCHIVE';
 
 export const STORIES_FETCH = 'STORIES_FETCH';
-export const STORIES_ADD = 'STORIES_ADD';
+export const STORIES_PILOT = 'STORIES_PILOT'; // used for first time add stories
+export const STORIES_PUSH = 'STORIES_PUSH';
 
 export const SEARCH_SET_CURRENT = 'SEARCH_SET_CURRENT';
 
