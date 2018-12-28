@@ -1,26 +1,26 @@
 import React from 'react';
 import './app.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import SearchAndList from './search-and-list/search-and-list';
+import Stories from './stories/stories';
 import Header from './header/header';
 import Todos from './todos/todos';
 import Notifications from './shared/notification/notifications';
 import Loader from './shared/loader/loader';
 
 const App = () => (
-	<div className="container-fluid">
+	<>
 		<BrowserRouter>
-			<>
-				<Notifications />
-				<Todos />
+			<> {/** router can have only one child, can't include even comment node */}
 				<Header />
 				<Switch>
-					<Route path="/" exact component={SearchAndList} />
+					<Route path="/" exact component={Stories} />
 				</Switch>
 			</>
 		</BrowserRouter>
+		<Notifications />
+		<Todos />
 		<Loader />
-	</div>
+	</>
 );
 
 export default App;

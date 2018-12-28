@@ -7,3 +7,7 @@
   line-height: 1.2; // can't be used on inline ele
   display: inline-block;
 }
+
+.in-progress {
+  text-decoration: underline dashed;
+}

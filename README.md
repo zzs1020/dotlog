@@ -33,3 +33,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 2. react-redux's connect won't inform component for every store change (https://github.com/reduxjs/react-redux/issues/1105#issuecomment-445365827)
 
 ### next idea/issues
+rename pj

@@ -1,14 +1,14 @@
 import React from 'react';
 import './story.scss';
 import { connect } from 'react-redux';
-import Button from '../../../../shared/button/button';
-import { IHit } from '../../../../../models/search-result.model';
+import { IHit } from '../../../models/search-result.model';
+import { ITodo } from '../../../models/todo.model';
+import { PAGE_HEAD } from '../../../constants/often-used-string';
+import Button from '../../shared/button/button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { doAddTodo, doRemoveTodo } from '../../../../../actions/todo.action';
-import { IStoreState } from '../../../../../models/store-state.model';
-import { getTodos } from '../../../../../selectors/todos.selector';
-import { ITodo } from '../../../../../models/todo.model';
-import { PAGE_HEAD } from '../../../../../constants/often-used-string';
+import { IStoreState } from '../../../models/store-state.model';
+import { getTodos } from '../../../selectors/todos.selector';
+import { doRemoveTodo, doAddTodo } from '../../../actions/todo.action';
 
 type Props = {
 	story: IHit,

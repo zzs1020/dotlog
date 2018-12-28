@@ -16,7 +16,8 @@ type State = {
 	opacity: number,
 	stopAnimation: boolean,
 	editable: boolean,
-	name: string
+	name: string,
+	inProgressStyle: string
 };
 
 class Todo extends React.Component<Props, State> {
@@ -27,13 +28,15 @@ class Todo extends React.Component<Props, State> {
 			stopAnimation: true, // don't let Spring auto animating when init component
 			opacity: 1,
 			editable: false,
-			name: this.props.item.name
+			name: this.props.item.name,
+			inProgressStyle: ''
 		};
 
 		this.fade = this.fade.bind(this);
 		this.changeName = this.changeName.bind(this);
 		this.changeEditable = this.changeEditable.bind(this);
 		this.saveName = this.saveName.bind(this);
+		this.handleLinkClick = this.handleLinkClick.bind(this);
 	}
 
 	fade() {
@@ -51,20 +54,24 @@ class Todo extends React.Component<Props, State> {
 
 	saveName() {
 		this.props.onSave(this.props.item.id, this.state.name);
-		this.setState({editable: false});
+		this.setState({ editable: false });
 	}
 
 	changeEditable() {
-		this.setState({editable: true});
+		this.setState({ editable: true });
+	}
+
+	handleLinkClick() {
+		this.setState({ inProgressStyle: 'in-progress' });
 	}
 
 	render() {
-		const {item, onToggle} = this.props;
-		const {opacity, stopAnimation, editable, name} = this.state;
+		const { item, onToggle } = this.props;
+		const { opacity, stopAnimation, editable, name, inProgressStyle } = this.state;
 
 		return (
 			// onRest get call after animation finishes
-			<Spring immediate={stopAnimation} to={{opacity}} onRest={() => onToggle(item)}>
+			<Spring immediate={stopAnimation} to={{ opacity }} onRest={() => onToggle(item)}>
 				{props =>
 					<div style={props}>
 						<div className="container-fluid border-bottom border-secondary row pt-1">
@@ -73,7 +80,10 @@ class Todo extends React.Component<Props, State> {
 							</div>
 							<div className="col">
 								{editable ? <input type="text" autoFocus value={name} onChange={this.changeName} onBlur={this.saveName} /> :
-									<a href={item.link} target="_blank" className={`todo-link ${item.completed ? 'crossed' : ''}`}>{name}</a>
+									<a href={item.link} target="_blank" onClick={this.handleLinkClick}
+										className={`todo-link ${inProgressStyle} ${item.completed ? 'crossed' : ''}`}>
+										{name}
+									</a>
 								}
 							</div>
 							<div className="col-auto" onClick={this.changeEditable}><FontAwesomeIcon icon={['far', 'edit']} /></div>

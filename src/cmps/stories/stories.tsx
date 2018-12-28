@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getReadableStories } from '../../../selectors/story.selector';
-import { IStoreState } from '../../../models/store-state.model';
-import StoriesGrid from './stories-grid/stories-grid';
-import { IHit } from '../../../models/search-result.model';
-import { doFetchStories } from '../../../actions/story.action';
-import { STORIES_FETCH } from '../../../constants/action-types';
-import { doCleanError } from '../../../actions/err.action';
-import { doSetCurrentSearch } from '../../../actions/search.action';
-import { PAGE_HEAD } from '../../../constants/often-used-string';
-import { isSmallDevice } from '../../../constants/util';
+import Story from './story/story';
+import Pagination from './pagination/pagination';
+import { IStoreState } from '../../models/store-state.model';
+import { IHit } from '../../models/search-result.model';
+import { STORIES_FETCH } from '../../constants/action-types';
+import { isSmallDevice } from '../../constants/util';
+import { PAGE_HEAD } from '../../constants/often-used-string';
+import { getReadableStories } from '../../selectors/story.selector';
+import { doFetchStories } from '../../actions/story.action';
+import { doCleanError } from '../../actions/err.action';
+import { doSetCurrentSearch } from '../../actions/search.action';
 
 type Props = {
 	store: IStoreState,
@@ -108,9 +109,14 @@ class Stories extends React.Component<Props, State> {
 
 	render() {
 		return (
-			<>
-				<StoriesGrid stories={this.state.showingStories} />
-			</>
+			<div className="container-fluid mt-3">
+				<div id="stories">
+					{(this.state.showingStories || []).map((story: IHit) =>
+						<Story key={story.objectID} story={story} />
+					)}
+				</div>
+				{isSmallDevice() ? null : <Pagination />}
+			</div>
 		);
 	}
 }

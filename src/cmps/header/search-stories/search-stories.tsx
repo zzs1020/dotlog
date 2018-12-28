@@ -2,6 +2,7 @@ import React from 'react';
 import { doFetchStories } from '../../../actions/story.action';
 import { connect } from 'react-redux';
 import Button from '../../shared/button/button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
 	onFetchStories: (q: string) => void
@@ -41,8 +42,8 @@ class SearchStories extends React.Component<Props, State> {
 	render() {
 		return (
 			<form onSubmit={this.onSubmit} className="form-inline">
-				<input type="text" className="form-control" value={this.state.query} onChange={this.onChange} />
-				<Button id="searchBtn" cls="primary" type="submit">Search</Button>
+				<input type="text" className="form-control mr-1" placeholder="Search..." value={this.state.query} onChange={this.onChange} />
+				<Button id="searchBtn" cls="outline-primary" type="submit"><FontAwesomeIcon icon="search" /></Button>
 			</form>
 		);
 	}
