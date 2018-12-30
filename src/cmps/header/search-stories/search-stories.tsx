@@ -24,6 +24,10 @@ class SearchStories extends React.Component<Props, State> {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
+	componentDidMount() {
+		this.props.onFetchStories('react');
+	}
+
 	onSubmit(event) {
 		const { query } = this.state;
 
