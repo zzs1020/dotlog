@@ -137,12 +137,11 @@ class Loader extends React.Component<Props, State> {
 		const parent = document.getElementById(loader.insertedElementId);
 		const loaderContainer = document.createElement('div');
 		loaderContainer.className = 'loader-container';
-		const progress = document.createElement('div');
-		progress.className = 'progress';
-		const progressBar = document.createElement('div');
-		progressBar.className = 'progress-bar progress-bar-striped progress-bar-animated bg-info';
-		progress.appendChild(progressBar);
-		loaderContainer.appendChild(progress);
+
+		const spinner = document.createElement('div');
+		spinner.className = 'spinner-grow text-success';
+
+		loaderContainer.appendChild(spinner);
 		return parent.appendChild(loaderContainer); // will return a ref of loader container
 	}
 

@@ -7,6 +7,7 @@ import { doAddLoader, doRemoveLoader } from '../actions/loader.action';
 
 function* handleFetchStories(action) {
 	yield put(doAddLoader('stories'));
+	// yield put(doAddLoader('searchBtn'));
 
 	try {
 		const {query, page} = action.payload;
