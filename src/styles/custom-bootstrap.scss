@@ -1,4 +1,4 @@
-// override variables before import default
-@import '~bootswatch/dist/flatly/variables';
+// override variables before import default because sass 'default rule'
+@import './variables';
 @import '~bootstrap/scss/bootstrap';
 @import '~bootswatch/dist/flatly/bootswatch';

@@ -1,5 +1,4 @@
 import React from 'react';
-import './app.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Stories from './stories/stories';
 import Header from './header/header';
