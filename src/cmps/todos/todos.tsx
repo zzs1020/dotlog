@@ -42,7 +42,7 @@ class Todos extends Component<Props, State> {
 		}
 	}
 
-	// withClickOutside hooks, child cmp have to implement it's logic itself
+	// withClickOutside hooks, child cmp have to implement its logic itself
 	handleClickOutside() {
 		this.toggle();
 	}

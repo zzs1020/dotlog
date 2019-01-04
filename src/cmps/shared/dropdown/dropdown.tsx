@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import Button from '../button/button';
 import './dropdown.scss';
 import { ISelectOption } from '../../../models/select-option.model';
+import withClickOutside from '../with-click-outside/with-click-outside';
 
 type Props = {
     options: ISelectOption[],
     placeholder?: string,
     hideSelected?: boolean, // some cases (nav dropdown) don't need to show selected value
     btnType?: string
-    onSelect: (ISelectOption) => void
+    onSelect: (ISelectOption) => void,
+    domRef: RefObject<HTMLDivElement>,
+    addClickListener: () => void,
+	removeClickListener: () => void
 };
 
 type State = {
@@ -34,6 +38,21 @@ class Dropdown extends React.Component<Props, State> {
         this.selectItem = this.selectItem.bind(this);
     }
 
+    componentDidMount() {
+        this.props.addClickListener();
+    }
+
+    componentWillUnmount() {
+        this.props.removeClickListener();
+    }
+
+    // withClickOutside hooks, child cmp have to implement its logic itself
+	handleClickOutside() {
+		this.setState({
+            closed: true
+        });
+	}
+
     toggleDropdown() {
         this.setState((prev) => ({
             closed: !prev.closed
@@ -51,10 +70,10 @@ class Dropdown extends React.Component<Props, State> {
     }
 
     render() {
-        const { options, placeholder, hideSelected, btnType } = this.props;
+        const { options, placeholder, hideSelected, btnType, domRef } = this.props;
         const { selected, closed } = this.state;
         return (
-            <div className="dropdown">
+            <div ref={domRef} className="dropdown">
                 <Button btnType={btnType} className="dropdown-toggle" onClick={this.toggleDropdown}>
                     {(hideSelected ? 0 : selected && selected.label) || placeholder || 'Select'}
                 </Button>
@@ -72,4 +91,4 @@ class Dropdown extends React.Component<Props, State> {
     }
 }
 
-export default Dropdown;
+export default withClickOutside(Dropdown);

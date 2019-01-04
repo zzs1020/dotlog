@@ -1,3 +1,15 @@
-.dropdown-menu {
-    display: block; // bootstrap's dropdown class set to hidden since it's js control it that way
+@import '../../../styles/variables';
+.dropdown {
+    display: inline-block;
+
+    .dropdown-menu {
+        display: block; // bootstrap's dropdown class set to hidden since its js control it that way
+        .dropdown-item:hover,
+        .dropdown-item:focus,
+        .dropdown-item.active {
+            color: $gray-700;
+            text-decoration: none;
+            background-color: $gray-200;
+        }
+    }
 }

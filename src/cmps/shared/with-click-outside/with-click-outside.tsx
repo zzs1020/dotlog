@@ -7,7 +7,8 @@ import React, { Component, RefObject } from 'react';
  *        but user must tell where is start node by using domRef prop, also need to implement handleClickOutside logic
  */
 const withClickOutside = (ChildComponent) => {
-	return class WithClickOutside extends Component {
+	// any is any original props to child component
+	return class WithClickOutside extends Component<any> {
 		childComponent: RefObject<Component>; // refer to component instance in case to call its method
 		startNode: RefObject<HTMLDivElement>; // refer to component's top DOM HTML element, from where to decide if it's outside or not
 

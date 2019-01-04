@@ -24,7 +24,7 @@ const Pagination = ({ currentSearch, onFetchStories }: Props) => {
 				</li>
 				{/** Array(number) only creates a new empty slots with length set up, no actual undefined value inserted */}
 				{limitedPages.map(i =>
-					<li key={i} className={`pg-item ${page === i ? 'active' : ''}`} onClick={() => onFetchStories(query, i, max)}>
+					<li key={i} className={`pg-item ${page === i ? 'pg-active' : ''}`} onClick={() => onFetchStories(query, i, max)}>
 						{i}
 					</li>
 				)}

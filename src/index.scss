@@ -1,5 +1,4 @@
 @import './styles/custom-bootstrap';
-
 // any styles put here will bbe global
 * {
     font-size: 1.1rem;
@@ -12,4 +11,10 @@ html {
 
 body {
     height: 100%;
+}
+
+.disabled {
+    pointer-events: none!important;
+    color: $gray-400!important;
+    background-color: $gray-100!important;
 }
