@@ -47,7 +47,7 @@ class SearchStories extends React.Component<Props, State> {
 		return (
 			<form onSubmit={this.onSubmit} className="form-inline">
 				<input type="text" className="form-control mr-1" placeholder="Search..." value={this.state.query} onChange={this.onChange} />
-				<Button id="searchBtn" cls="outline-primary" type="submit"><FontAwesomeIcon icon="search" /></Button>
+				<Button id="searchBtn" btnType="outline-secondary" type="submit"><FontAwesomeIcon icon="search" /></Button>
 			</form>
 		);
 	}

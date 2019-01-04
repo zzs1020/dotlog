@@ -3,15 +3,17 @@ import React, { MouseEvent, FC } from 'react'; // FunctionComponent defined chil
 type Props = {
 	id?: string,
 	type?: string,
-	cls?: string,
+	btnType?: string, // specific to btn classes
+	className?: string, // additional custom classes
 	size?: string,
 	disabled?: boolean,
 	onClick?: (e: MouseEvent<HTMLElement>) => void
 };
 
-const Button: FC<Props> = ({id, type = 'button', cls = 'primary', size = 'default-size', disabled = false, onClick = null, children}) => {
+const Button: FC<Props> = ({id, type, btnType = 'primary', className, size, disabled, onClick, children}) => {
+	// if a prop doesn't exist, react will omit this html prop
 	return (
-		<button id={id} type={type} onClick={onClick} disabled={disabled} className={`btn btn-${cls} btn-${size}`}>
+		<button id={id} type={type} onClick={onClick} disabled={disabled} className={`btn btn-${btnType} btn-${size} ${className}`}>
 			{children}
 		</button>
 	);

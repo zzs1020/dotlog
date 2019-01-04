@@ -1,3 +1,9 @@
+@import '~bootswatch/dist/flatly/variables';
+
+.active {
+  color: $green!important;
+}
+
 .user-menu {
   background: white;
   border: lightgrey 1px solid;

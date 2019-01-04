@@ -36,7 +36,7 @@ const Story = ({ story, todos, onBookmark }: Props) => {
 				</div>
 			</div>
 			<div className="col">
-				<Button cls="link" onClick={() => onBookmark(story, todos)}>
+				<Button btnType="link" onClick={() => onBookmark(story, todos)}>
 					<FontAwesomeIcon icon={[isTodoExist(story, todos) ? 'fas' : 'far', 'bookmark']} title="Add to Reading List" />
 				</Button>
 			</div>

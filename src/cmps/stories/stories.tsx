@@ -11,6 +11,9 @@ import { getReadableStories } from '../../selectors/story.selector';
 import { doFetchStories } from '../../actions/story.action';
 import { doCleanError } from '../../actions/err.action';
 import { doSetCurrentSearch } from '../../actions/search.action';
+import Dropdown from '../shared/dropdown/dropdown';
+import { orderStoriesBy } from '../../constants/options';
+import { ISelectOption } from '../../models/select-option.model';
 
 type Props = {
 	store: IStoreState,
@@ -107,9 +110,15 @@ class Stories extends React.Component<Props, State> {
 		});
 	}
 
+	reorderStories(selected: ISelectOption) {
+		// fetch stories by some order
+		// onFetchStories(selected.value)
+	}
+
 	render() {
 		return (
 			<div className="container-fluid mt-3">
+				<Dropdown options={orderStoriesBy} placeholder="Order By" onSelect={this.reorderStories} />
 				<div id="stories">
 					{(this.state.showingStories || []).map((story: IHit) =>
 						<Story key={story.objectID} story={story} />
