@@ -5,6 +5,7 @@ import Header from './header/header';
 import Todos from './todos/todos';
 import Notifications from './shared/notification/notifications';
 import Loader from './shared/loader/loader';
+import WriteArticle from './write-article/write-article';
 
 const App = () => (
 	<>
@@ -13,6 +14,7 @@ const App = () => (
 				<Header />
 				<Switch>
 					<Route path="/" exact component={Stories} />
+					<Route path="/compose" exact component={WriteArticle} />
 				</Switch>
 			</>
 		</BrowserRouter>

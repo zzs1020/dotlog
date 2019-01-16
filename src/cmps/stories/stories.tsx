@@ -14,7 +14,6 @@ import { doSetCurrentSearch } from '../../actions/search.action';
 import Dropdown from '../shared/dropdown/dropdown';
 import { orderStoriesBy } from '../../constants/options';
 import { ISelectOption } from '../../models/select-option.model';
-import Composer from '../shared/composer/composer';
 
 type Props = {
 	store: IStoreState,
@@ -119,7 +118,6 @@ class Stories extends React.Component<Props, State> {
 	render() {
 		return (
 			<div className="container-fluid mt-3">
-				<Composer />
 				<Dropdown options={orderStoriesBy} placeholder="Order By" onSelect={this.reorderStories} />
 				<div id="stories">
 					{(this.state.showingStories || []).map((story: IHit) =>
