@@ -3,7 +3,7 @@ import './todo.scss';
 import { ITodo } from '../../../models/todo.model';
 import { doToggleTodo, doSaveTodoName } from '../../../actions/todo.action';
 import { connect } from 'react-redux';
-import { Spring } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
