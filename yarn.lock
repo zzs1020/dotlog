@@ -1980,10 +1980,10 @@ bootstrap@^4.3.0:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.0.tgz#2559ccb8d45426ac6c54db23eb3d1c9f4257fa22"
   integrity sha512-M0vqY0Z6UDweV2nLFl5dXcb+GIo53EBCGMMVxCGH5vJxl/jsr+HkULBMd4kn9rdpdBZwd3BduCgMOYOwJybo4Q==
 
-bootswatch@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/bootswatch/-/bootswatch-4.2.1.tgz#be402aeb8f9920c008c62f8a77c29a91a11b4c8a"
-  integrity sha512-2UV3a/3sleGVsOa8q3t5O4+u+ONfQvscMTKwqMVd0tkcypGhiLeE3W461qJ4uZzo6AzCSuYBTzGmOSdel0g9/A==
+bootswatch@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/bootswatch/-/bootswatch-4.4.1.tgz#f270618b4ebe07de8e1748acd88f104cc31bfec3"
+  integrity sha512-Kx3z6+3Jpg9g6l/xZBCnc8d6KeJK0QawxCZWOomdcI5AuSZLZb+DoH5X9RJH+cOcSeMAxyzdIjkVUR01+Db5bQ==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
