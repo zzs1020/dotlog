@@ -2443,10 +2443,15 @@ clone-deep@^2.0.1:
     kind-of "^6.0.0"
     shallow-clone "^1.0.0"
 
-cloudinary-core@^2.3.0, cloudinary-core@^2.6.2:
+cloudinary-core@^2.3.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.6.2.tgz#e034877e65bab554e23e5ef215f091f27630e507"
   integrity sha512-oS+qniwbRVrDO6va4BNStkyunVbr1YQJarFlas19208tLUZE8DOxFO0fSE6Mx9zNfcwU6Cpm8x9FtVdtiwB/MA==
+
+cloudinary-core@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.8.1.tgz#68e3b892dcdbdc9b22dcadadbf3c30dcc77cbde8"
+  integrity sha512-UsJnukV1qftOoEWIEwqUC5nBZWZRDnBNFQnCFsxfLGyLDES4D13YxyygGAtC+ipTatZr0Ylnlr2qDclnZPBhuw==
 
 cloudinary-react@^1.1.0:
   version "1.1.0"
