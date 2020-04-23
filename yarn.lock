@@ -2443,17 +2443,22 @@ clone-deep@^2.0.1:
     kind-of "^6.0.0"
     shallow-clone "^1.0.0"
 
-cloudinary-core@^2.3.0, cloudinary-core@^2.6.2:
+cloudinary-core@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.6.2.tgz#e034877e65bab554e23e5ef215f091f27630e507"
   integrity sha512-oS+qniwbRVrDO6va4BNStkyunVbr1YQJarFlas19208tLUZE8DOxFO0fSE6Mx9zNfcwU6Cpm8x9FtVdtiwB/MA==
 
-cloudinary-react@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/cloudinary-react/-/cloudinary-react-1.1.0.tgz#fc31c678c26bafb46b1967563aee5dbf9d915d41"
-  integrity sha512-7o29x7VnQ9fLwZ+cyupYC4wf5Mn63bbcvBQduyayPFxEo6OoNkDxLGKN6b1JyKdjiVxcRfpZjTPFKNWDbiQDmQ==
+cloudinary-core@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.8.2.tgz#355faf986ded19358a65ddc28ad29344c1de0902"
+  integrity sha512-nV1lhEXlqNhgnbnzsDzbrNUAkP8H9J5RuBareRlWyb8tKx/94DvG/kXWrSlC8XNB3uKfiwxOudOnRdjsEnjBgA==
+
+cloudinary-react@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/cloudinary-react/-/cloudinary-react-1.5.0.tgz#8a84e1ba4866f46e419405c6bce62bf52c313464"
+  integrity sha512-Ll1Huv5gJgJtesM7RF1oXQdjtv3J6mKk2dBCIGoDTWNZJOBVAwOgd30640O5hil9Pyr2Whrb9kHuY4T8D2yHtw==
   dependencies:
-    cloudinary-core "^2.3.0"
+    cloudinary-core "^2.8.2"
     prop-types "^15.6.2"
 
 co@^4.6.0:
