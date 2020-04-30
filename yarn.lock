@@ -956,10 +956,10 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@tinymce/tinymce-react@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-3.0.1.tgz#6343e004d14fcc875cfe1cd6d0cf552a341ac55b"
-  integrity sha512-19g2iHR6Bxp7FpnyA/71Aq5kzzM7D5adT87hL+QvcySH1NoqB2aTqBBdiF/0HoDVI/nXq7FbalmlIcVTen1WrQ==
+"@tinymce/tinymce-react@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-3.5.1.tgz#ba2743ffa9533d32ab2d948dcc0ee09779696927"
+  integrity sha512-o4BV0CaHBBqJriYxVfioJFNxqal/GjlEDtEhxPyaAnwHKyE9GcJrM4bEt212pcxi8Oj7lA7QleM9tiU+JT55yA==
   dependencies:
     prop-types "^15.6.2"
 
