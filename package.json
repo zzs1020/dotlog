@@ -24,7 +24,7 @@
         "@fortawesome/react-fontawesome": "^0.1.4",
         "@tinymce/tinymce-react": "^3.0.1",
         "axios": "^0.18.0",
-        "bootstrap": "^4.3.0",
+        "bootstrap": "^4.5.0",
         "bootswatch": "^4.2.1",
         "cloudinary-core": "^2.6.2",
         "cloudinary-react": "^1.1.0",
